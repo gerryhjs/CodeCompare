@@ -19,7 +19,7 @@ import static main_core.Core.*;
 public class Servlet extends HttpServlet {
 //	private DecimalFormat df = new DecimalFormat("#.00");
 
-	public Servlet()
+	Servlet()
 	{
 		Core.init();
 	}

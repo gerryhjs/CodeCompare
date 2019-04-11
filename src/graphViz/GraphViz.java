@@ -29,7 +29,7 @@ class  GraphViz{
         dotCodeFile=sdf.format(new Date())+"dotcode.txt";
         File file=new File(runPath);
         final boolean result = file.mkdirs();
-        if (!result) printWarn("Fail makeDir");
+        if (!result) printLog("Auto mkdir:Dir existed.");
 
         writeGraphToFile(graph.toString(), runPath);
         creatOrder();

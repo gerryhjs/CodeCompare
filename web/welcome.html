@@ -1,0 +1,217 @@
+<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+<script>
+
+    function stu() {
+        $("#c0").show();
+        $("#c1").show();
+        $("#c2").show();
+        $("#c3").hide();
+        $("#c4").show();
+        $("#c5").hide();
+        $("#c6").hide();
+        $("#c7").show();
+        $("#c8").show();
+        $("#c9").hide();
+    }
+    function tec() {
+        $("#c0").show();
+        $("#c1").hide();
+        $("#c2").show();
+        $("#c3").show();
+        $("#c4").show();
+        $("#c5").show();
+        $("#c6").hide();
+        $("#c7").show();
+        $("#c8").show();
+        $("#c9").hide();
+    }
+    function eng() {
+        $("#c0").show();
+        $("#c1").show();
+        $("#c2").show();
+        $("#c3").hide();
+        $("#c4").hide();
+        $("#c5").hide();
+        $("#c6").show();
+        $("#c7").show();
+        $("#c8").show();
+        $("#c9").show();
+    }
+    function ent() {
+        $("#c0").show();
+        $("#c1").show();
+        $("#c2").show();
+        $("#c3").show();
+        $("#c4").show();
+        $("#c5").hide();
+        $("#c6").show();
+        $("#c7").show();
+        $("#c8").show();
+        $("#c9").show();
+    }
+    function jug() {
+        $("#c0").show();
+        $("#c1").hide();
+        $("#c2").show();
+        $("#c3").show();
+        $("#c4").show();
+        $("#c5").show();
+        $("#c6").show();
+        $("#c7").hide();
+        $("#c8").hide();
+        $("#c9").hide();
+    }
+    function all() {
+        $("#c0").show();
+        $("#c1").show();
+        $("#c2").show();
+        $("#c3").show();
+        $("#c4").show();
+        $("#c5").show();
+        $("#c6").show();
+        $("#c7").show();
+        $("#c8").show();
+        $("#c9").show();
+    }
+</script>
+
+<h2 class="entry-title"><span style="color:white;">开始工作</span></h2>
+<div class="entry-meta">
+    <div class="entry-content col-md-8">
+        <span style="color:white; font-size: large">
+            欢迎来到myCodeWorker<br/>
+             </span>
+        <br/>
+        <span style="color:#99f3a1; font-size: large">
+            您的身份是?
+             </span>
+        <br/>
+        <div class="btn-group">
+
+            <a onclick="stu()"  class="btn btn-info btn-lg">
+            <span class="glyphicon glyphicon-education
+            glyphicon"> 学生</span></a>
+            <a onclick="tec()"  class="btn btn-info btn-lg">
+            <span class="glyphicon glyphicon-book
+            glyphicon"> 教师</span></a>
+            <a onclick="eng()"  class="btn btn-info btn-lg">
+            <span class="glyphicon glyphicon-user
+            glyphicon"> 程序员</span></a>
+            <a onclick="ent()"  class="btn btn-info btn-lg">
+            <span class="glyphicon glyphicon-home"> 企业</span></a>
+            <a onclick="jug()"  class="btn btn-info btn-lg">
+            <span class="glyphicon glyphicon-eye-open"> 裁判</span></a>
+
+        </div>
+
+
+        <br/>
+        <br/>
+        <br/>
+        <span hidden id="c0" style="color:white; font-size: large">
+            <strong>推荐模块：</strong>   <br/>
+            <br/>
+            <br/>
+        </span>
+
+        <span hidden id="c1" style="color:white; font-size: large">
+            <a class="glyphicon glyphicon-ok"></a>
+            <strong>分析优化：</strong>对单个代码工程文件进行结构分析和给出重构建议。   <br/>
+        <br/>
+        </span>
+
+        <span hidden id="c2" style="color:white; font-size: large">
+            <a class="glyphicon glyphicon-ok"></a>
+           <strong> 快速查重：</strong>开始对两个代码文件或者代码工程进行查重。     <br/>
+        <br/>
+        </span>
+
+        <span hidden id="c3" style="color:white; font-size: large">
+            <a class="glyphicon glyphicon-ok"></a>
+            <strong>组内查重：</strong>对选定的文件夹组内的所有子工程进行互相查重。   <br/>
+        <br/>
+        </span>
+
+        <span hidden id="c4" style="color:white; font-size: large">
+            <a class="glyphicon glyphicon-ok"></a>
+            <strong>一对多查重：</strong>对选定的代码工程与指定数据源进行比对查重。
+                    <br/>
+        <br/>
+        </span>
+        <span hidden id="c5" style="color:white; font-size: large">
+            <a class="glyphicon glyphicon-ok"></a>
+            <strong>组队组查重：</strong>对选定的代码工程与指定数据源进行比对查重。   <br/>
+        <br/>
+        </span>
+
+        <span hidden id="c6" style="color:white; font-size: large">
+            <a class="glyphicon glyphicon-ok"></a>
+            <strong>调参训练：</strong>开始一次机器学习训练，对查重系统进行调参。<br/>
+        <br/>
+        </span>
+
+        <span hidden id="c7" style="color:white; font-size: large">
+            <a class="glyphicon glyphicon-ok"></a>
+            <strong>在线查重：</strong>用在线数据源对目标代码进行查重       <br/>
+        <br/>
+            <!--（注意：在线查重模块,结构分析不可用）-->
+        </span>
+
+        <span hidden id="c8" style="color:white; font-size: large">
+            <a class="glyphicon glyphicon-ok"></a>
+            <strong>爬虫获源：</strong>利用网络爬虫下载在线比对数据库。<br/>
+        <br/>
+        </span>
+
+        <span hidden id="c9" style="color:white; font-size: large">
+            <a class=" glyphicon glyphicon-ok"></a>
+             <strong>命令行界面</strong>可以快速部署自定义命令进行工作<br/>
+        <br/>
+        </span>
+
+        <span id="c10" style="color:white; font-size: large">
+            <a class=" glyphicon glyphicon-question-sign"></a>
+             <strong>需要帮助？</strong> <a  style="color:white"  href="index.html?load=help">
+            <i class=" 	glyphicon glyphicon-share">
+            </i>点击此处查看帮助文档</a>
+            <br/>
+        <br/>
+        </span>
+
+    </div>
+    <div class="entry-content col-md-4">
+
+        <br/>
+        <br/>
+
+        <br/>
+        <br/>
+
+        <br/>
+        <br/>
+
+        <p align="center">
+            <img src="img/logo.png" style="opacity:0.4;" height="200" width="300" alt=""/>
+        </p>
+        <p style="font-size: large" align="center">
+            <span style="color:#6253ff; font-size: x-large">view project</span>
+        </p>
+        <p style="font-size: large" align="center">
+            <a style="color:white" title="code_compare-release@github" href="https://github.com/gerryhjs/code_compare-release"><i class=" 	glyphicon glyphicon-share">
+            </i>VISIT github(release)</a>
+        </p>
+        <p style="font-size: large" align="center">
+            <a  style="color:white" title="code_compare@github" href="https://github.com/gerryhjs/code_compare-release"><i class=" 	glyphicon glyphicon-share">
+            </i>VISIT github(develop)</a></p>
+
+        <br/>
+        <br/>
+        <p style="font-size: large" align="right">copyright@gerry 2019.03</p>
+
+    </div>
+
+
+
+    <br/>
+
+</div>

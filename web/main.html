@@ -1,0 +1,145 @@
+<script>
+
+    var type=getQueryString("type");
+    // alert(type);
+    var s="";
+    var p1="";
+    var p2="";
+    switch (type) {
+        case "draw":
+            s = "代码分析";
+            p1 = "目标代码";
+            p2 = "";
+            break;
+        case "compare":
+            s = "快速查重";
+            p1 = "目标代码";
+            p2 = "数据库";
+            break;
+        case "compare_inGroup":
+            s = "组内查重";
+            p1 = "目标代码";
+            break;
+        case "compare_toGroup":
+            s = "一对多查重";
+            p1 = "目标代码";
+            p2 = "数据库";
+            break;
+        case "compare_betweenGroup":
+            s = "一对多查重";
+            p1 = "目标代码";
+            p2 = "数据库";
+            break;
+        case "compare_online":
+            s = "在线查重";
+            p1 = "目标代码";
+            p2 = "";
+            break;
+        case "training":
+            s = "调参训练";
+            p1 = "调参数据集";
+            p2 = "";
+            break;
+        case "set":
+            s = "设置参数值";
+            p1 = "参数名";
+            p2 = "参数值";
+            break;
+        case "spider":
+            s = "爬虫获源";
+            p1 = "起始网址";
+            p2 = "最大步长";
+            break;
+        default:
+            s = "未实现";
+            break;
+    }
+    $("#type").html("当前模块："+s);
+    if (p1!="")
+        $("#path1").attr("placeholder",p1);
+    else  $("#path1").attr("disabled",true);
+    if (p2!="")
+    $("#path2").attr("placeholder",p2);
+    else  $("#path2").attr("disabled",true);
+
+    // function cmd() {
+    //     var path1=$("#path1").val();
+    //     var path2=$("#path2").val();
+    //     var s;
+    //     if (path2.length>0)
+    //         s = type + " " + path1 + " " + path2 + ";";
+    //     else
+    //         s = type + " " + path1 +";";
+    //         alert(s);
+    // }
+    function getQueryString(name) {
+        var reg = new RegExp("(^|&)"+name+"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)
+            return unescape(r[2]);
+        return "";
+    }
+    function confirm() {
+        var s;
+        var path1=$("#path1").val();
+        var path2=$("#path2").val();
+        if (path2.length>0)
+        s = type + " " + path1 + " " + path2 + ";";
+        else
+        s = type + " " + path1 +";";
+        $("#confirm").attr("disabled",true);
+        $.post('Servlet', {input: s}, function (output, status, xhr) {
+            $("#result").val(output);
+            $("#confirm").attr("disabled",false);
+        });
+    }
+</script>
+<h2 class="entry-title"><span id="type" style="color:white;"></span></h2>
+<div class="entry-meta">
+    <br/>
+    <br/>
+    <p> <input id="path1" style="font-size:250%;width:800px;height: 50px;" type="text" class="btn-outline-inverse" placeholder="">
+        <!--<input type="file" >-->
+    </p>
+    <br/>
+    <br/>
+    <br/>
+    <p> <input id="path2" style="font-size:250%;width:800px;height:50px;" type="text" class="btn-outline-inverse" placeholder="">
+        <!--<input type="file" >-->
+    </p>
+    <br/>
+    <br/>
+    <br/>
+    <!--<p>-->
+    <!--<a onclick="cmd()" class="btn btn-outline-inverse btn-lg">-->
+        <!--<span>预览命令</span>-->
+    <!--</a>-->
+    <!--</p>-->
+    <!--<br/>-->
+
+    <p>
+       <a  style="color:white"  href="index.html?load=main&type=set"  class="btn btn-outline btn-lg">
+        <i class=" 	glyphicon glyphicon-cog">
+            <span style="color:white; font-size: large">设置参数</span></i></a>
+    </p>
+    <br/>
+
+    <a id="confirm" style="width: 100px" onclick="confirm()"  class="btn btn-outline-inverse btn-lg">
+        <span>确认</span>
+    </a>
+
+    <a href="index.html" style="width: 100px" class="btn btn-outline btn-lg">
+        <span>取消</span>
+    </a>
+
+
+    <br/>
+    <br/>
+    <br/>
+    <label style="color:whitesmoke" for="result">返回结果：</label>
+    <br/>
+    <textarea disabled id="result" style="border:0;background-color:transparent;
+              font-size:20px;color:#FFFFFF; width:100%;height:200px;resize: none;">
+
+    </textarea>
+</div>

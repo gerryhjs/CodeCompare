@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/docs.min.css" />
+    <link rel="stylesheet" href="css/table-style.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+            border: none;
+        }
+
+
+        #news li {
+            line-height: 30px;
+        }
+
+        @keyframes ran {
+            from {
+                backgroud-position: 0 0;
+            }
+            to {
+                background-position: 2000px 0;
+            }
+        }
+
+
+
+        .mydate-list ul {
+            width: 100%;
+            font-weight: bold;
+            font-size: 10px;
+        }
+
+        .mydate-list ul li {
+            width: 14.28%;
+            height: 20px;
+            line-height: 16px;
+            list-style-type: none;
+            display: block;
+            box-sizing: border-box;
+            float: left;
+            text-align: center;
+        }
+
+    </style>
+    <title>代码查重系统</title>
+    <script language="javascript" type="text/javascript" src="js/WdatePicker.js"></script>
+    <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+    <script src="js/jquery-3.3.1.js"></script>
+    <script>
+
+
+
+        window.onload = function() {
+            showTime();
+            // $("#page-content").empty();
+            var load=getQueryString("load");
+            if (load.length>0)
+            $("#page-content").load(load+".html");
+            else $("#page-content").load("welcome.html");
+        };
+
+        function getQueryString(name) {
+            var reg = new RegExp("(^|&)"+name+"=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if(r!=null)
+                return unescape(r[2]);
+            return "";
+        }
+
+        function checkTime(i) { //补位处理
+            if(i < 10) {
+                i = "0" + i; //当秒分小于10时，在左边补0；
+            }
+            return i;
+        }
+
+        function showTime() {
+            var now = new Date();
+            var year = now.getFullYear();
+            var month = now.getMonth() + 1; //js获取的月份是从0开始；
+            var day = now.getDate();
+            var h = now.getHours();
+            var m = now.getMinutes();
+            var s = now.getSeconds();
+            m = checkTime(m);
+            s = checkTime(s);
+
+            var weekday = new Array(7);
+            weekday[0] = "星期日";
+            weekday[1] = "星期一";
+            weekday[2] = "星期二";
+            weekday[3] = "星期三";
+            weekday[4] = "星期四";
+            weekday[5] = "星期五";
+            weekday[6] = "星期六";
+            var w = weekday[now.getDay()]; //js获取的星期是0~6,0是星期天；
+            document.getElementById("show").innerHTML = "" + year + "年" + month + "月" + day + "日 " + w + "  " + h + ":" + m + ":" + s;
+            t = setTimeout('showTime()', 500);
+
+        }
+
+
+
+
+
+    </script>
+
+</head>
+
+<body style="background-image:url(img/head.png); background-size: cover;">
+<!--页面标题nav-->
+<nav class="navbar " role="navigation">
+    <a class="navbar-brand">代码查重系统</a>
+    <!-- <marquee class="col-md-8"> behavior="alternate" scrollamount="5"  </marquee> -->
+    <div class="col-md-3" style="vertical-align:middle;height: 50px; padding-top: 15px;">
+        <p id="show"></p>
+    </div>
+</nav>
+
+<!--左侧导航栏-->
+<div class="col-md-2" >
+    <ul id="typeList" class="nav nav-pills nav-stacked" >
+        <li>
+        </li>
+        <li>
+            <a href="index.html?load=welcome" class="btn btn-outline-inverse btn-lg">
+                <span class=" 	 glyphicon glyphicon-play-circle "></span> 开始工作
+            </a>
+        </li>
+        <li>
+            <br/>
+        </li>
+        <li>
+            <a href="index.html?load=main&type=set" class="btn btn-outline-inverse btn-lg">
+                <span class="glyphicon glyphicon-cog"></span> 系统设置
+            </a>
+        </li>
+        <li>
+            <br/>
+        </li>
+
+
+
+        <li>
+            <a href="index.html?load=main&type=draw" class="btn btn-outline-inverse btn-lg">
+                <span class=" 	 glyphicon glyphicon-pencil"></span>代码分析优化
+            </a>
+        </li>
+
+        <li>
+            <br/>
+        </li>
+
+        <li>
+            <a href="index.html?load=main&type=compare" class="btn btn-outline-inverse btn-lg">
+                <span class=" 	glyphicon glyphicon-fast-forward"></span>部署快速查重
+            </a>
+
+        </li>
+        <li>
+            <br/>
+        </li>
+        <li>
+            <a href="index.html?load=main&type=compare_inGroup" class="btn btn-outline-inverse btn-lg">
+                <span class=" 	glyphicon glyphicon-search"></span> 部署组内查重
+            </a>
+        </li>
+        <li>
+            <br/>
+        </li>
+        <li>
+            <a href="index.html?load=main&type=compare_toGroup" class="btn btn-outline-inverse btn-lg">
+                <span class=" 	glyphicon glyphicon-search"></span> 部署一对多查重
+            </a>
+        </li>
+        <li>
+            <br/>
+        </li>
+        <li>
+            <a href="index.html?load=main&type=compare_betweenGroup" class="btn btn-outline-inverse btn-lg">
+                <span class=" 	glyphicon glyphicon-search"></span> 部署组对组查重
+            </a>
+        </li>
+        <li>
+            <br/>
+        </li>
+
+        <li>
+            <a href="index.html?load=main&type=training" class="btn btn-outline-inverse btn-lg">
+                <span class=" 	glyphicon glyphicon-indent-left"></span> 部署调参训练
+            </a>
+        </li>
+        <li>
+            <br/>
+        </li>
+        <li>
+            <a href="index.html?load=main&type=compare_online" class="btn btn-outline-inverse btn-lg">
+                <span class=" 	glyphicon glyphicon-zoom-in"></span> 部署在线查重
+            </a>
+        </li>
+        <li>
+            <br/>
+        </li>
+        <li>
+            <a href="index.html?load=main&type=spider" class="btn btn-outline-inverse btn-lg">
+                <span class="glyphicon glyphicon-save"></span> 爬虫获取数据源
+            </a>
+        </li>
+        <li>
+            <br/>
+        </li>
+        <li>
+            <a href="index.html?load=cmd" class="btn btn-outline btn-lg">
+                <span class=" glyphicon glyphicon-dashboard"></span> 命令行
+            </a>
+        </li>
+
+    </ul>
+</div>
+<div class="col-sm-1" >
+</div>
+<div class="col-lg-8">
+
+    <div class="page-content" id="page-content"></div>
+
+
+</div>
+
+
+
+
+</body>
+
+
+</html>

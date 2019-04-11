@@ -1,10 +1,11 @@
-package main_core;
+package Test;
 
 import compare_core.CodeCompare;
 import compare_core.StringCompare;
 import file_core.CodeFile;
 import file_core.FileStreamer;
 import graphViz.GraphVizTest;
+import main_core.Core;
 import mechine_learning.LearnProject;
 import org.junit.Test;
 import webspider.SpiderWebsite;

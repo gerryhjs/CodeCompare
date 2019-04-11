@@ -1,5 +1,6 @@
-package compare_core;
+package Graph;
 
+import compare_core.CodeCompare;
 import file_core.CodeFile;
 import main_core.Core;
 

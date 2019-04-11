@@ -1,4 +1,6 @@
-package Servlet;
+package Test;
+
+import main_core.Servlet;
 
 import java.util.Scanner;
 

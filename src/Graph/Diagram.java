@@ -1,4 +1,4 @@
-package compare_core;
+package Graph;
 
 import java.util.HashMap;
 import java.util.HashSet;

@@ -1,4 +1,4 @@
-package Servlet;
+package main_core;
 
 
 import compare_core.StringCompare;

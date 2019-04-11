@@ -16,9 +16,9 @@ import static main_core.Core.printLog;
 
 public class SpiderCatcher {  
      	public String s;
-		private final int MAXSIZE=1000;
-     	//public ArrayList<String> list=new ArrayList<String>();
-    	public SpiderCatcher(String s){      
+
+	//public ArrayList<String> list=new ArrayList<String>();
+	   SpiderCatcher(String s){
     		this.s=s;
     	}
     	public void work(ArrayList<String> keys)
@@ -43,6 +43,7 @@ public class SpiderCatcher {
 				if (code.length()>0) html.append(code).append("\r\n");
 //				FileStreamer.output(Core.getOutputPath() + File.separator + "text.txt",line+ "\r\n",true);
 				i++;
+				int MAXSIZE = 1000;
 				if (i >= MAXSIZE) return;
 				//Matcher m = p.matcher(line);
 				if (!find){

@@ -1,4 +1,4 @@
-package Graph;
+package graph;
 
 import compare_core.CodeCompare;
 import file_core.CodeFile;

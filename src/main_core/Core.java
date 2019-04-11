@@ -2,8 +2,8 @@ package main_core;
 
 import compare_core.CodeCompare;
 import file_core.ExStreamer;
-import Graph.Diagram;
-import Graph.Vertex;
+import graph.Diagram;
+import graph.Vertex;
 import file_core.CodeFile;
 import file_core.FileStreamer;
 import file_core.FolderScanner;

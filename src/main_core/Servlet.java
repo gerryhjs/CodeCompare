@@ -306,7 +306,7 @@ public class Servlet extends HttpServlet {
 	}
 
 
-	//	@Test
+	//	@test
 //	public void test()
 //	{
 ////		String test="input=mode:{mode};file1:{file1};file2:{file2};threshold:0.6;weight:1;\n" +

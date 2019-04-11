@@ -1,4 +1,4 @@
-package Test;
+package test;
 
 import compare_core.CodeCompare;
 import compare_core.StringCompare;
@@ -6,11 +6,13 @@ import file_core.CodeFile;
 import file_core.FileStreamer;
 import graphViz.GraphVizTest;
 import main_core.Core;
+import main_core.Servlet;
 import mechine_learning.LearnProject;
 import org.junit.Test;
 import webspider.SpiderWebsite;
 
 import java.io.File;
+import java.util.Scanner;
 
 import static main_core.Core.printLog;
 import static main_core.Core.printSys;
@@ -112,6 +114,19 @@ public class TestList {
                 " E -> G [style=dashed]\n" +
                 " B -> G";
         graphVizTest.draw(s,"test");
+    }
+
+    @Test
+    public void clientTest()
+    {
+            Servlet s=new Servlet();
+            s.deal("check");
+
+            Scanner scanner= new Scanner(System.in);
+            for(int i=0;i<=99;i++)
+            {
+                s.deal(scanner.nextLine());
+            }
     }
 
 

@@ -116,8 +116,7 @@ public class TestList {
         graphVizTest.draw(s,"test");
     }
 
-    @Test
-    public void clientTest()
+    public static void  main(String[] args)
     {
             Servlet s=new Servlet();
             s.deal("check");

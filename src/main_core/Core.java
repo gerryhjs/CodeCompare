@@ -56,7 +56,7 @@ public abstract  class Core {
     private static double adj_sim2=1.2;
     private static double pow_sim2=0.3;
     public static double entropyToIndex=0.2;
-    public static double entropyStable=6;
+    public static double entropyStable=0.65;
     public static boolean adjust=false;
     private static int adjustTimes=10;
     public static boolean printLog=true;

@@ -7,6 +7,8 @@ import main_core.Core;
 import java.util.HashMap;
 import java.util.Set;
 
+import static main_core.Core.printLog;
+
 public class Vertex {
     private CodeFile cf;
     private HashMap<Vertex,Double> Edges=new HashMap<>();
@@ -122,6 +124,8 @@ public class Vertex {
     public String bestBelong()
     {
         if(this.getFrom().size()+this.getTo().size()==0) return  "useless";
+        double sumWeight=0;
+
         HashMap<String,Double> belongValue=new HashMap<>();
         for (Vertex Scanner:getFrom())
         {
@@ -133,7 +137,8 @@ public class Vertex {
                 value=0;
             }
             value+=1d+1d/from.get(Scanner);
-            if (Scanner.getPackageName().equals(getPackageName())) value+=value* Core.entropyStable;
+            sumWeight+=value;
+//            if (Scanner.getPackageName().equals(getPackageName())) value+=value* Core.entropyStable;
             belongValue.put(Scanner.getPackageName(),value);
         }
         for (Vertex Scanner:getTo())
@@ -146,7 +151,8 @@ public class Vertex {
                 value=0;
             }
             value+=1d+1d/Edges.get(Scanner)* Core.entropyToIndex;
-            if (Scanner.getPackageName().equals(getPackageName())) value+=value* Core.entropyStable* Core.entropyToIndex;
+            sumWeight+=sumWeight;
+//            if (Scanner.getPackageName().equals(getPackageName())) value+=value* Core.entropyStable* Core.entropyToIndex;
             belongValue.put(Scanner.getPackageName(),value);
         }
         double max=-1;
@@ -159,7 +165,11 @@ public class Vertex {
                 max=belongValue.get(Scanner);
             }
         }
+        if (max<=sumWeight*Core.entropyStable)
+            return this.getPackageName();
 //        this.getCf().setPackageName(result);
+        printLog(fileName+"-"+result);
+
         return result;
     }
 

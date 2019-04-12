@@ -21,9 +21,11 @@ import java.util.regex.Pattern;
  */
 public abstract  class Core {
     public static DecimalFormat df = new DecimalFormat("#.00");
-    private static ArrayList<String> suffixList=new ArrayList<>();
-    public static boolean createXls=false;
-    public static boolean createDiagram=false;
+    private static final Set<String> suffixList=new HashSet<String>(){{
+        add("java");
+    }};
+    public static boolean createXls=true;
+    public static boolean createDiagram=true;
     public static boolean byLines=false;
     public static boolean bySize=false;
     public static double pow_dis=0.7;
@@ -40,7 +42,10 @@ public abstract  class Core {
     private static final String path0="/home/hjs/KINGSTON/check/jsp-server";
     private static final String path1="/media/hjs/KINGSTON/check/jsp-lab";
     private static final String outputPath ="/home/hjs/cc";
-
+    public Core()
+    {
+        suffixList.add("java");
+    }
     public static String getSpiderPath() {
         return spiderPath;
     }
@@ -54,7 +59,7 @@ public abstract  class Core {
     public static double entropyStable=6;
     public static boolean adjust=false;
     private static int adjustTimes=10;
-    public static boolean printLog=false;
+    public static boolean printLog=true;
 
 //    private static StringBuilder log=new StringBuilder();
 
@@ -220,8 +225,6 @@ public abstract  class Core {
         threshold=0.6;
         check_threshold =0.6;
         adjust=false;
-        suffixList=new ArrayList<>();
-        suffixList.add("java");
         String s= FileStreamer.input(new File(dictionary_path));
         if (s==null)
             dictionary= null;
@@ -722,8 +725,10 @@ public abstract  class Core {
         String name=temp[temp.length-1];
         Diagram m=new Diagram(name);
         FolderScanner.init();
-        if (suffixList.size()==0)
+        if (suffixList.size()==0) {
+            printErr("SuffixList is null!");
             return null;
+        }
         FolderScanner.setSuffixList(suffixList);
         try {
             FolderScanner.find(path);

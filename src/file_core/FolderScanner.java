@@ -2,6 +2,8 @@ package file_core;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -29,7 +31,7 @@ public abstract class FolderScanner {
 //    }
 //    private boolean removeComment=true;
 //    private boolean removeSpace=true;
-    private static ArrayList<String> suffixList;
+    private static Set<String> suffixList;
 //    private static String[] dictionary;
 //    public FolderScanner(String pathName,int depth) throws IOException {
 //        finds=new ArrayList<>();
@@ -87,7 +89,7 @@ public abstract class FolderScanner {
     {
         if (suffixList==null)
         {
-            suffixList=new ArrayList<>();
+            suffixList=new HashSet<>();
             suffixList.add("java");
         }
         for (String Scanner:suffixList)
@@ -116,7 +118,7 @@ public abstract class FolderScanner {
 //        removeSpace=false;
 //    }
 
-    public static void setSuffixList(ArrayList<String> suffixList) {
+    public static void setSuffixList(Set<String> suffixList) {
         FolderScanner.suffixList = suffixList;
     }
 }

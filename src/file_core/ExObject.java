@@ -1,16 +1,16 @@
 package file_core;
 
 
-public class ExObject {
+class ExObject {
     //  private HashMap<String,String>=new HashMap();
     //private ArrayList<String> attrName;
     private String[] value;
-    public ExObject()
+    ExObject()
     {
       //  this.attrName=new ArrayList<>();
         this.value=new String[100];
     }
-    public void setAttr(int key,String val)
+    void setAttr(int key, String val)
     {
         //boolean find=false;
         value[key]=val;

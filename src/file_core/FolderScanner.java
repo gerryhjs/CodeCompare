@@ -85,7 +85,7 @@ public abstract class FolderScanner {
         }
     }
 
-    public static boolean pd(File file)
+    private static boolean pd(File file)
     {
         if (suffixList==null)
         {

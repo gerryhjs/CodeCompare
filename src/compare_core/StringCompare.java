@@ -59,13 +59,7 @@ public abstract class StringCompare {
                 diff[i][0] = i;
             for (int j = 0; j <= s2.length(); j++)
                 diff[0][j] = j;
-            for (int i = 1; i <= s1.length(); i++)
-                for (int j = 1; j <= s2.length(); j++) {
-                    double temp = 0;
-                    if (s1.charAt(i - 1) != s2.charAt(j - 1))
-                        temp = 1;
-                    diff[i][j] = min(diff[i - 1][j] + 1, diff[i][j - 1] + 1, diff[i - 1][j - 1] + temp);
-                }
+            work_compare(s1, s2, diff);
 
 //            System.out.print("   ");
 //            for (int j = 1; j <= s2.length(); j++)
@@ -90,16 +84,20 @@ public abstract class StringCompare {
                 diff[i][0] = i;
             for (int j = 0; j < s2.length(); j++)
                 diff[0][j] = j;
-            for (int i = 1; i <= s1.length(); i++)
-                for (int j = 1; j <= s2.length(); j++) {
-                    double temp = 0;
-                    if (s1.charAt(i - 1) != s2.charAt(j - 1))
-                        temp = 1;
-                    diff[i][j] = min(diff[i - 1][j] + 1, diff[i][j - 1] + 1, diff[i - 1][j - 1] + temp);
-                }
+            work_compare(s1, s2, diff);
 
             return 1-(diff[s1.length()][s2.length()])/Math.min(s1.length(), s2.length());
         }
+    }
+
+    private static void work_compare(String s1, String s2, double[][] diff) {
+        for (int i = 1; i <= s1.length(); i++)
+            for (int j = 1; j <= s2.length(); j++) {
+                double temp = 0;
+                if (s1.charAt(i - 1) != s2.charAt(j - 1))
+                    temp = 1;
+                diff[i][j] = min(diff[i - 1][j] + 1, diff[i][j - 1] + 1, diff[i - 1][j - 1] + temp);
+            }
     }
 
     public static double min(double... input)

@@ -84,7 +84,7 @@ public class CodeFile {
     }
     private String removeTab(String s)
     {
-        s=s.replace("  ","*");
+//        s=s.replace("  ","*");
         s=s.replace("\t","*");
         s=s.replaceAll("^\\s*\\n","*");
         return s;

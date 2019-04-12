@@ -17,7 +17,7 @@ class  GraphViz{
     private String dotCodeFile="dotcode.txt";
     private String resultGif="dotGif";
     private StringBuilder graph = new StringBuilder();
-    private Runtime runtime=Runtime.getRuntime();
+
 
     void setPicName(String name)
     {
@@ -34,18 +34,13 @@ class  GraphViz{
         writeGraphToFile(graph.toString(), runPath);
         creatOrder();
         try {
-            runtime.exec(runOrder); //windows
-   //         command(runOrder); //linux
+//          Runtime.getRuntime().exec(runOrder); //windows
+            command(runOrder); //linux
         } catch (Exception e) {
-            try {
                 printLog(e.toString());
-                command(runOrder); //linux
-            } catch (Exception e2) {
-                printLog(e2.toString());
-            }
         }
     }
-    public void command(String cmd)
+    private void command(String cmd)
     {
         printLog(cmd);
         executeCommand(new String[]{"sh", "-c", cmd});
@@ -53,7 +48,7 @@ class  GraphViz{
     /**
      * 执行系统命令
      */
-    public static void executeCommand(String[] command)
+    private static void executeCommand(String[] command)
     {
         Runtime r = Runtime.getRuntime();
         Process p;
@@ -73,7 +68,7 @@ class  GraphViz{
             e.printStackTrace();
         }
     }
-    public void creatOrder(){
+    private void creatOrder(){
         runOrder+=dotPath+" ";
         runOrder+=runPath;
         runOrder+=File.separator+dotCodeFile+" ";
@@ -84,7 +79,7 @@ class  GraphViz{
         //printLog((runOrder);
     }
 
-    public void writeGraphToFile(String dotcode, String filename) {
+    private void writeGraphToFile(String dotcode, String filename) {
         try {
             File file = new File(filename+File.separator+dotCodeFile);
 //            printLog((file.getAbsoluteFile());
@@ -112,7 +107,7 @@ class  GraphViz{
         }
     }
 
-    public GraphViz(String runPath,String dotPath) {
+    GraphViz(String runPath, String dotPath) {
         this.runPath=runPath;
         this.dotPath=dotPath;
     }
@@ -121,7 +116,7 @@ class  GraphViz{
         graph.append("\t").append(line);
     }
 
-    public void addln(String line) {
+    void addln(String line) {
         graph.append("\t").append(line).append("\n");
     }
 
@@ -129,11 +124,11 @@ class  GraphViz{
 //        graph.append('\n');
 //    }
 
-    public void start_graph() {
+    void start_graph() {
         graph.append("digraph G {\n") ;
     }
 
-    public void end_graph() {
+    void end_graph() {
         graph.append("}") ;
         printLog(graph);
     }

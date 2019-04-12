@@ -414,7 +414,7 @@ public abstract  class Core {
                 if (!Scanner1.equals(Scanner2)) {
                     double similar = compare(path1 + Scanner1, path2 + Scanner2);
                     if (similar > threshold)
-                        result.append(Scanner1).append("-").append(Scanner2).append(":").append(similar).append(";<br/>");
+                        result.append(Scanner1).append("-").append(Scanner2).append(":").append(similar).append(";\n");
                 }
             }
         }

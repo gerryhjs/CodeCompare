@@ -24,7 +24,7 @@ public class Cmd {
 
     public static void deal(String input) {
         String[] cmds=new String[]{"compare","compare_inGroup","compare_betweenGroup","compare_toGroup",
-                "set","get","log","init","learn","check","draw","training","spider","compare_online"};
+                "set","get","log","init","check","draw","training","spider","compare_online"};
         try
         {
             String[] cmd=input.split(" ");
@@ -176,55 +176,33 @@ public class Cmd {
                     }
 
                 }
-                case "learn_init":{
-                    if (cmd.length==1)
-                    {
-                        LearnProject.init();
-                        printSys("Finished");
-                        break;
-                    }
-                    else
-                    {
-                        printErr("'learn_init' should with no parameter");
-                        break;
-                    }
-                }
-                case "learn_add":{
-                    //TODO
-                    if (cmd.length==4)
-                    {
-                        LearnProject.addData(cmd[1],cmd[2],Boolean.parseBoolean(cmd[3]));
-                        printSys("Finished");
-                        break;
-                    }
-                    else
-                    {
-                        printErr("'learn_add' should with 3 parameters:path1,path2 and result(boolean)");
-                        break;
-                    }
-                }
-                case "learn_training":{
-                    if (cmd.length==2)
-                    {
-                        int time;
-                        try
-                        {
-                            time=Integer.parseInt(cmd[1]);
-                        }catch (Exception e)
-                        {
-                            printErr("train time should be integer.");
-                            break;
-                        }
-                        LearnProject.training(time);
-                        printSys("Finished");
-                        break;
-                    }
-                    else
-                    {
-                        printErr("'learn_training' should with 1 parameter");
-                        break;
-                    }
-                }
+//                case "learn_init":{
+//                    if (cmd.length==1)
+//                    {
+//                        LearnProject.init();
+//                        printSys("Finished");
+//                        break;
+//                    }
+//                    else
+//                    {
+//                        printErr("'learn_init' should with no parameter");
+//                        break;
+//                    }
+//                }
+//                case "learn_add":{
+//                    //TODO
+//                    if (cmd.length==4)
+//                    {
+//                        LearnProject.addData(cmd[1],cmd[2],Boolean.parseBoolean(cmd[3]));
+//                        printSys("Finished");
+//                        break;
+//                    }
+//                    else
+//                    {
+//                        printErr("'learn_add' should with 3 parameters:path1,path2 and result(boolean)");
+//                        break;
+//                    }
+//                }
                 case "check":{
                     if (cmd.length==1)
                     {
@@ -251,7 +229,7 @@ public class Cmd {
                         break;
                     }
                 case "training":
-                    if (cmd.length==2)
+                    if (cmd.length==3)
                     {
                         printSys(LearnProject.training(cmds[1],Integer.valueOf(cmds[2])));
                         break;

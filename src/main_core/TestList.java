@@ -1,4 +1,4 @@
-package test;
+package main_core;
 
 import compare_core.CodeCompare;
 import compare_core.StringCompare;
@@ -37,9 +37,9 @@ public class TestList {
         Core.init();
         Core.createDiagram=true;
         Core.adjust=false;
-        Core.check("/home/hjs/androidlearn-master/");
+        Core.check("/home/hjs/CodeCompare/");
         Core.adjust=true;
-        Core.check("/home/hjs/androidlearn-master/");
+        Core.check("/home/hjs/CodeCompare/");
 
         //        Core.check("/media/hjs/KINGSTON/big_data");
     }
@@ -120,7 +120,7 @@ public class TestList {
     @Test
     public void inGroup_test()
     {
-        compare_inGroup("/media/hjs/KINGSTON/check");
+        compare_inGroup("/media/hjs/KINGSTON/check/jsp-server");
     }
 
 

@@ -387,12 +387,12 @@ public abstract  class Core {
 
     public static String compare_inGroup(String path)//N
     {
-        String s= compare_betweenGroup(path,path);
-        if (s==null) {
+//        String s= compare_betweenGroup(path,path);
+         {
             printLog("Auto change to inGroup2");
             return compare_toGroup2(path,path);
         }
-        else return s;
+//        else return s;
     }
     public static String compare_toGroup2(String path1,String path2)
     {
@@ -417,10 +417,10 @@ public abstract  class Core {
             exc[0][j+1]=codes2[j];
         for (String Scanner:codes1)
             if (pd(new File(Scanner)))
-            codeFiles1.add(new CodeFile(new File(Scanner)));
+            codeFiles1.add(new CodeFile(new File(path1+File.separator+ Scanner)));
         for (String Scanner:codes2)
             if (pd(new File(Scanner)))
-            codeFiles2.add(new CodeFile(new File(Scanner)));
+            codeFiles2.add(new CodeFile(new File(path2+File.separator+ Scanner)));
 
         for (int i = 0; i < codeFiles1.size(); i++)
             for (int j = 0; j < codeFiles2.size(); j++)

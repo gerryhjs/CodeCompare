@@ -403,10 +403,12 @@ public abstract  class Core {
         if (codes1==null)
         {
             printErr(path1+":code list is null");
+            return null;
         }
         if (codes2==null)
         {
             printErr(path2+":code list is null");
+            return null;
         }
         String[][] exc=new String[codes1.length+1][codes2.length+1];
         for (int i=0;i<codes1.length;i++)

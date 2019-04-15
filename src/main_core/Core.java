@@ -8,6 +8,8 @@ import file_core.CodeFile;
 import file_core.FileStreamer;
 import file_core.FolderScanner;
 import graphViz.GraphVizTest;
+import org.apache.poi.ss.formula.functions.Code;
+
 import java.io.File;
 import java.io.PrintWriter;
 import java.text.DecimalFormat;
@@ -32,8 +34,8 @@ public abstract  class Core {
     private static double ADJ_DIS =2;
     private static final double LOW_INDEX=3;
     public static double edge_weight =0.5;
-    private static double check_threshold =0.6;
-    public static double threshold=0.6;
+    private static double check_threshold =0.5;
+    public static double threshold=0.5;
     public static double min_threshold=0.2;
 
     @SuppressWarnings("FieldCanBeLocal")
@@ -385,38 +387,96 @@ public abstract  class Core {
 
     public static String compare_inGroup(String path)//N
     {
-        return compare_betweenGroup(path,path);
+        String s= compare_betweenGroup(path,path);
+        if (s==null) {
+            printLog("Auto change to inGroup2");
+            return compare_toGroup2(path,path);
+        }
+        else return s;
+    }
+    public static String compare_toGroup2(String path1,String path2)
+    {
+        String[] codes1=new File(path1).list();
+        String[] codes2=new File(path2).list();
+        ArrayList<CodeFile> codeFiles1=new ArrayList<>();
+        ArrayList<CodeFile> codeFiles2=new ArrayList<>();
+        if (codes1==null)
+        {
+            printErr(path1+":code list is null");
+        }
+        if (codes2==null)
+        {
+            printErr(path2+":code list is null");
+        }
+        String[][] exc=new String[codes1.length+1][codes2.length+1];
+        for (int i=0;i<codes1.length;i++)
+            exc[i+1][0]=codes1[i];
+        for (int j=0;j<codes2.length;j++)
+            exc[0][j+1]=codes2[j];
+        for (String Scanner:codes1)
+            if (pd(new File(Scanner)))
+            codeFiles1.add(new CodeFile(new File(Scanner)));
+        for (String Scanner:codes2)
+            if (pd(new File(Scanner)))
+            codeFiles2.add(new CodeFile(new File(Scanner)));
+
+        for (int i = 0; i < codeFiles1.size(); i++)
+            for (int j = 0; j < codeFiles2.size(); j++)
+            {
+                CodeFile Scanner1=codeFiles1.get(i);
+                CodeFile Scanner2=codeFiles2.get(j);
+                if (Scanner1.equals(Scanner2)) continue;
+                double similar= CodeCompare.compare(Scanner1,Scanner2);
+                exc[i+1][j+1]= String.valueOf(similar);
+            }
+        if (createXls)
+        {
+            new  ExStreamer("compareResult.xls").excelOut(exc);
+        }
+        return null;
     }
 
     public static String compare_betweenGroup(String path1, String path2)//N-N
     {
         if (!path1.endsWith("File.separator")) path1 += File.separator;
         if (!path2.endsWith("File.separator")) path2 += File.separator;
-        String[] paths1=new File(path1).list();
-        String[] paths2=new File(path2).list();
-        StringBuilder result= new StringBuilder();
-        if (paths1==null)
-        {
-            printErr("Group '"+path1+"' is null.");
+        String[] paths1 = new File(path1).list();
+        String[] paths2 = new File(path2).list();
+        StringBuilder result = new StringBuilder();
+        if (paths1 == null) {
+            printErr("Group '" + path1 + "' is null.");
             return null;
         }
-        if (paths2==null)
-        {
-            printErr("Group '"+path2+"' is null.");
+        if (paths2 == null) {
+            printErr("Group '" + path2 + "' is null.");
             return null;
         }
-        if (path1.length()==0)
-            printWarn("Group '"+path1+"' is empty size project.");
+        if (path1.length() == 0)
+            printWarn("Group '" + path1 + "' is empty size project.");
 
-        for(String Scanner1:paths1)
-        {
-            for(String Scanner2:paths2) {
+        String[][] exc = new String[paths1.length + 1][paths2.length + 1];
+        for (int i=0;i<paths1.length;i++)
+            exc[i+1][0]=paths1[i];
+
+        for (int j=0;j<paths2.length;j++)
+            exc[0][j+1]=paths2[j];
+
+        for (int i = 0; i < paths1.length; i++)
+            for (int j = 0; j < paths2.length; j++) {
+//                printLog(i+" "+j);
+                String Scanner1 = paths1[i];
+                String Scanner2 = paths2[j];
                 if (!Scanner1.equals(Scanner2)) {
                     double similar = compare(path1 + Scanner1, path2 + Scanner2);
+                    exc[i+1][j+1] = String.valueOf(similar);
                     if (similar > threshold)
                         result.append(Scanner1).append("-").append(Scanner2).append(":").append(similar).append(";\n");
                 }
             }
+
+        if (createXls)
+        {
+            new  ExStreamer("compareResult.xls").excelOut(exc);
         }
         return result.toString();
     }
@@ -729,7 +789,6 @@ public abstract  class Core {
             printErr("SuffixList is null!");
             return null;
         }
-        FolderScanner.setSuffixList(suffixList);
         try {
             FolderScanner.find(path);
         } catch (Exception e) {
@@ -933,6 +992,14 @@ public abstract  class Core {
 //        Core.createDiagram = createDiagram;
 //    }
 //
+    public static boolean pd(File file) {
+        for (String Scanner : suffixList) {
+            if (file.getName().endsWith("." + Scanner)) return true;
+        }
+        // if (file.getName().endsWith(".c")) return true;
+        //if (file.getName().endsWith(".cpp")) return true;
+        return false;
+    }
 
 
 }

@@ -15,8 +15,7 @@ import java.io.File;
 import java.util.Scanner;
 
 import static main_core.Cmd.deal;
-import static main_core.Core.printLog;
-import static main_core.Core.printSys;
+import static main_core.Core.*;
 
 public class TestList {
     @Test
@@ -118,6 +117,11 @@ public class TestList {
     }
 
 
+    @Test
+    public void inGroup_test()
+    {
+        compare_inGroup("/media/hjs/KINGSTON/check");
+    }
 
 
 

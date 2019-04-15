@@ -2,11 +2,10 @@ package file_core;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static main_core.Core.pd;
 import static main_core.Core.printErr;
 
 public abstract class FolderScanner {
@@ -31,7 +30,6 @@ public abstract class FolderScanner {
 //    }
 //    private boolean removeComment=true;
 //    private boolean removeSpace=true;
-    private static Set<String> suffixList;
 //    private static String[] dictionary;
 //    public FolderScanner(String pathName,int depth) throws IOException {
 //        finds=new ArrayList<>();
@@ -72,34 +70,18 @@ public abstract class FolderScanner {
                 }
             } else {
                 if (pd(file)) {
-                    for (String suffix : suffixList) {
-                        if (!finds.contains(file.getName().replace(suffix, ""))) {
-                            finds.add(file.getName().replace(suffix, ""));
+                            String[] tmp=file.getName().split("\\.");
+                            finds.add(file.getName().replace("."+tmp[tmp.length-1],""));
                             CodeFile cf;
                             cf = new CodeFile(file);
                             codeFiles.add(cf);
-                        }
-                    }
+
                 }
             }
         }
     }
 
-    private static boolean pd(File file)
-    {
-        if (suffixList==null)
-        {
-            suffixList=new HashSet<>();
-            suffixList.add("java");
-        }
-        for (String Scanner:suffixList)
-        {
-            if (file.getName().endsWith("."+Scanner)) return true;
-        }
-       // if (file.getName().endsWith(".c")) return true;
-        //if (file.getName().endsWith(".cpp")) return true;
-        return false;
-    }
+
     public static boolean contain(String txt,String key)
     {
         Pattern pattern = Pattern.compile(key);
@@ -118,7 +100,4 @@ public abstract class FolderScanner {
 //        removeSpace=false;
 //    }
 
-    public static void setSuffixList(Set<String> suffixList) {
-        FolderScanner.suffixList = suffixList;
-    }
 }

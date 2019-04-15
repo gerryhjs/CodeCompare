@@ -115,6 +115,35 @@ public class ExStreamer {
         this.attr = attrs;
     }
 
+    public void excelOut(String[][] txt)
+    {
+        WritableWorkbook book = null;
+        File f;
+        try
+        {
+            f=new File(path);
+            book = Workbook.createWorkbook(f);
+            WritableSheet sheet = book.createSheet("sheet1", 0);
+            for (int i = 0; i < txt.length; i++) {
+                for (int j=0;j<txt[0].length;j++)
+                {
+                    Label l=new Label(j,i,txt[i][j]);
+                    sheet.addCell(l);
+                }
+            }
+            book.write();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                assert book != null;
+                book.close();
+            } catch (WriteException | IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     public void excelOut(int size,ArrayList<String> attrs,String[][] attrsVal)
     {
 //        String[] labels= null;

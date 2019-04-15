@@ -26,26 +26,26 @@ public abstract  class Core {
     }};
     public static boolean createXls=true;
     public static boolean createDiagram=true;
-    public static boolean byLines=false;
-    public static boolean bySize=false;
-    public static double pow_dis=0.7;
+    private static boolean byLines=false;
+    private static boolean bySize=false;
+    private static double pow_dis=0.7;
     private static double ADJ_DIS =2;
     private static final double LOW_INDEX=3;
     public static double edge_weight =0.5;
-    public static double check_threshold =0.6;
+    private static double check_threshold =0.6;
     public static double threshold=0.6;
     public static double min_threshold=0.2;
+
+    @SuppressWarnings("FieldCanBeLocal")
     private static double createIndex=1.6;
+
     private static final double BAS_DIS=2;
     private static PrintWriter servletWriter;
     private static final String dictionary_path="/home/hjs/code_compare/src/dictionary";
     private static final String path0="/home/hjs/KINGSTON/check/jsp-server";
     private static final String path1="/media/hjs/KINGSTON/check/jsp-lab";
     private static final String outputPath ="/home/hjs/cc";
-    public Core()
-    {
-        suffixList.add("java");
-    }
+
     public static String getSpiderPath() {
         return spiderPath;
     }

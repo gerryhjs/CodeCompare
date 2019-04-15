@@ -43,7 +43,7 @@ public class Cmd {
                     }
                     else
                     {
-                        printErr("'compare' should with 2 parameters");
+                        printErr("'compare' should with 2 or 1 parameters");
                         break;
                     }
 
@@ -107,7 +107,7 @@ public class Cmd {
                     }
                     else
                     {
-                        printErr("'compare' should with 2 parameters");
+                        printErr("'compare_toGroup' should with 2 parameters");
                         break;
                     }
                 }

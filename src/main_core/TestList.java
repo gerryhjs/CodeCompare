@@ -11,6 +11,9 @@ import mechine_learning.LearnProject;
 import org.junit.Test;
 import webspider.SpiderWebsite;
 
+import javax.swing.*;
+import javax.swing.filechooser.FileSystemView;
+import java.awt.*;
 import java.io.File;
 import java.util.Scanner;
 
@@ -19,10 +22,27 @@ import static main_core.Core.*;
 
 public class TestList {
     @Test
+    public void quickRun()
+    {
+        String path1=select();
+        String path2=select();
+        printSys(Core.compare(path1,path2));
+    }
+
+
+    @Test
+    public void groupRun()
+    {
+        String path=select();
+        printSys(Core.compare_inGroup(path));
+    }
+
+    @Test
     public void stringTest()
     {
         printSys(StringCompare.work("ABCDEFGH","AFBDCEHG"));
     }
+
     @Test
     public void singleTest()
     {
@@ -49,7 +69,8 @@ public class TestList {
         Core.init();
         Core.createXls=true;
         Core.createDiagram=true;
-        printLog(Core.compare("/home/hjs/androidlearnT2/","/home/hjs/androidlearn-master/"));
+        double result=Core.compare("/media/hjs/KINGSTON/check/jsp-lab","/media/hjs/KINGSTON/check/Predict");
+        printSys(result);
     }
     @Test
     public void singleCompare_test()
@@ -123,7 +144,27 @@ public class TestList {
         compare_inGroup("/media/hjs/KINGSTON/check/jsp-server");
     }
 
-
+    public String select()
+    {
+        JFileChooser fc = new JFileChooser();
+        fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);//只能选择目录
+        String path;
+        File f;
+        int flag = 0;
+        try{
+            flag=fc.showOpenDialog(null);
+        }
+        catch(HeadlessException head){
+            printErr("Open File Dialog ERROR!");
+        }
+        if(flag==JFileChooser.APPROVE_OPTION){
+            //获得该文件
+            f=fc.getSelectedFile();
+            path=f.getPath();
+            return path;
+        }
+        return null;
+    }
 
 
 

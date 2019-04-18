@@ -53,7 +53,7 @@ public abstract  class Core {
     }
 
     private static final String spiderPath ="/home/hjs/cc/collect";
-    private static final String dotPath="dot";//"C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe"
+    private static final String dotPath="C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe";
     private static String[] dictionary;
     private static double adj_sim2=1.2;
     private static double pow_sim2=0.3;
@@ -663,7 +663,8 @@ public abstract  class Core {
             attrs.add("vertex_Similar");
             attrs.add("edge_Similar");
             //  attrs.add("Similar");
-            String path= "[" + diagram1.getName() + "]==>[" + diagram2.getName() + "]"+"S:" + df.format(result*100) +"%.xls";
+            String path= "[" + diagram1.getName() + "]-[" + diagram2.getName() + "]"+"S:" + df.format(result) +".xls";
+            printSys(path);
             new ExStreamer(path).excelOut(vertexList1.size(), attrs, values);
         }
         if (createDiagram)
@@ -784,7 +785,11 @@ public abstract  class Core {
 
 
     public static Diagram check(String path) {
-        String[] temp=path.split("/");
+        String[] temp;
+        if  (System.getProperty("os.name").toLowerCase().startsWith("win"))
+            temp=path.split("\\\\");
+            else
+            temp=path.split("/");
         String name=temp[temp.length-1];
         Diagram m=new Diagram(name);
         FolderScanner.init();

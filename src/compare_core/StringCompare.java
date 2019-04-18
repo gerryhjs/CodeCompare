@@ -61,17 +61,6 @@ public abstract class StringCompare {
                 diff[0][j] = j;
             work_compare(s1, s2, diff);
 
-//            System.out.print("   ");
-//            for (int j = 1; j <= s2.length(); j++)
-//                System.out.print(s2.charAt(j-1)+"  ");
-//            System.out.println();
-//            for (int i = 1; i <= s1.length(); i++) {
-//                System.out.print(s1.charAt(i-1)+"  ");
-//                for (int j = 1; j <= s2.length(); j++) {
-//                    System.out.print((int)diff[i][j]+"  ");
-//                }
-//                System.out.println();
-//            }
 
             return 1-(diff[s1.length()][s2.length()])/s1.length();//Math.min(s1.length(), s2.length());
             //return 1-(diff[s1.length()][s2.length()])/Math.min(s1.length(), s2.length());//-Math.abs(s1.length()-s2.length())
@@ -98,6 +87,19 @@ public abstract class StringCompare {
                     temp = 1;
                 diff[i][j] = min(diff[i - 1][j] + 1, diff[i][j - 1] + 1, diff[i - 1][j - 1] + temp);
             }
+
+
+//            System.out.print("   ");
+//            for (int j = 1; j <= s2.length(); j++)
+//                System.out.print(s2.charAt(j-1)+"  ");
+//            System.out.println();
+//            for (int i = 1; i <= s1.length(); i++) {
+//                System.out.print(s1.charAt(i-1)+"  ");
+//                for (int j = 1; j <= s2.length(); j++) {
+//                    System.out.print((int)diff[i][j]+"  ");
+//                }
+//                System.out.println();
+//            }
     }
 
     public static double min(double... input)

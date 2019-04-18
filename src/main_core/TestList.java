@@ -21,6 +21,13 @@ import static main_core.Cmd.deal;
 import static main_core.Core.*;
 
 public class TestList {
+
+    @Test
+    public void opGet()
+    {
+        String os = System.getProperty("os.name");
+        printSys(os);
+    }
     @Test
     public void quickRun()
     {

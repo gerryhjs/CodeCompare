@@ -28,14 +28,19 @@ class  GraphViz{
         SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddhhmmssSSS");
         dotCodeFile=sdf.format(new Date())+"dotcode.txt";
         File file=new File(runPath);
+        printSys(runPath);
         final boolean result = file.mkdirs();
         if (!result) printLog("Auto mkdir:Dir existed.");
-
         writeGraphToFile(graph.toString(), runPath);
         creatOrder();
         try {
-//          Runtime.getRuntime().exec(runOrder); //windows
-            command(runOrder); //linux
+            if  (System.getProperty("os.name").toLowerCase().startsWith("win"))
+            {
+                Runtime.getRuntime().exec(runOrder); //windows
+            }
+            else {
+                command(runOrder); //linux
+            }
         } catch (Exception e) {
                 printLog(e.toString());
         }

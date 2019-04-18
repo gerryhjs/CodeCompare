@@ -7,7 +7,7 @@ import java.util.Date;
 
 public class GraphVizTest {
     private final String graphVizPath= Core.getOutputPath();
-    private final String dotPath= Core.getDotPath();
+    private final String dotPath=(System.getProperty("os.name").toLowerCase().startsWith("win")) ? Core.getDotPath():"dot";
 
 
     public void draw(String list,String name) {
@@ -34,4 +34,6 @@ edge [shape=plaintext, fontname="Microsoft Yahei"];
         }
         gViz.delete();
     }
+
+
 }

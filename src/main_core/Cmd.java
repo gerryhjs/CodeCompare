@@ -190,7 +190,6 @@ public class Cmd {
 //                    }
 //                }
 //                case "learn_add":{
-//                    //TODO
 //                    if (cmd.length==4)
 //                    {
 //                        LearnProject.addData(cmd[1],cmd[2],Boolean.parseBoolean(cmd[3]));

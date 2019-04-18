@@ -22,7 +22,7 @@
     });
     function load()
     {
-        var s="check";
+        var s="hello";
             $("#code").attr("disabled",true);
             $.post('Servlet', {input: s}, function (output, status, xhr) {
                 $("#code").val($("#code").val()  + output+">>");

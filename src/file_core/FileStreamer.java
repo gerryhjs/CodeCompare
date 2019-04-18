@@ -2,6 +2,8 @@ package file_core;
 
 import java.io.*;
 
+import static main_core.Core.printErr;
+
 public abstract class FileStreamer {
 //    private String filename;
 //    private File file;
@@ -28,6 +30,7 @@ public abstract class FileStreamer {
             reader.close();
             return data.toString();
         } catch (Exception e) {
+            printErr(e.toString());
             return null;
         }
     }
@@ -54,6 +57,7 @@ public abstract class FileStreamer {
             writer.write(input);
             writer.close();
         } catch (Exception e) {
+            printErr(e.toString());
             return false;
         }
         return true;

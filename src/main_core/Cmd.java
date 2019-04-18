@@ -1,21 +1,27 @@
 package main_core;
 
 import compare_core.StringCompare;
+import file_core.FileStreamer;
 import mechine_learning.LearnProject;
 import webspider.SpiderWebsite;
-
-import java.util.Scanner;
+import javax.swing.*;
+import java.awt.*;
+import java.io.File;
+import java.text.DecimalFormat;
+import java.util.*;
 
 import static main_core.Core.*;
-import static main_core.Core.printErr;
 
 public class Cmd {
+    private static final String settingPath=new File("").getAbsolutePath()+File.separator+"setting.xml";
+    private static final String parameterPath=new File("").getAbsolutePath()+File.separator+"parameter.xml";
     public static void  main(String[] args)
     {
+        load();
+        deal("hello");
 
-        deal("check");
         Scanner scanner= new Scanner(System.in);
-        for(int i=0;i<=99;i++)
+        for(int i=0;i<=999;i++)
         {
             System.out.print(">");
             deal(scanner.nextLine());
@@ -23,8 +29,9 @@ public class Cmd {
     }
 
     public static void deal(String input) {
-        String[] cmds=new String[]{"compare","compare_inGroup","compare_betweenGroup","compare_toGroup",
-                "set","get","log","init","check","draw","training","spider","compare_online"};
+        load();
+        printSys("run>>"+input);
+        String[] cmds=new String[]{"compare","compare_inGroup","compare_betweenGroup","compare_toGroup","log","init","hello","draw","training","spider","compare_online"};
         try
         {
             String[] cmd=input.split(" ");
@@ -114,12 +121,14 @@ public class Cmd {
                 case "set":{
                     if (cmd.length==3)
                     {
-                        printSys("Result="+Core.set(cmd[1],cmd[2]));
+//                        printSys("Result="+Core.set(cmd[1],cmd[2]));
+                        printSys("set is no longger support at deal");
                         break;
                     }
                     else
                     {
-                        printErr("'set' should with 2 parameters");
+                        printSys("set is no longger support at deal");
+//                        printErr("'set' should with 2 parameters");
                         break;
                     }
 
@@ -127,12 +136,14 @@ public class Cmd {
                 case "get":{
                     if (cmd.length==2)
                     {
-                        printSys("Result="+Core.get(cmd[1]));
+//                        printSys("Result="+Core.get(cmd[1]));
+                        printSys("get is no longger support at deal");
                         break;
                     }
                     else
                     {
-                        printErr("'get' should with 1 parameters");
+                        printSys("get is no longger support at deal");
+//                        printErr("'get' should with 1 parameters");
                         break;
                     }
 
@@ -140,8 +151,8 @@ public class Cmd {
                 case "init":{
                     if (cmd.length==1)
                     {
-                        Core.init();
-                        printSys("Finished");
+//                        Core.init();
+                        printWarn("Init is no longer use in deal.");
                         break;
                     }
                     else
@@ -202,7 +213,7 @@ public class Cmd {
 //                        break;
 //                    }
 //                }
-                case "check":{
+                case "hello":{
                     if (cmd.length==1)
                     {
                         printSys("Connect success.");
@@ -264,6 +275,230 @@ public class Cmd {
             printErr("[cmd]"+e.toString());
         }
 
+    }
+
+
+
+    /*
+    public static DecimalFormat df = new DecimalFormat("#.00");
+    public static final Set<String> suffixList=new HashSet<String>(){{add("java"); }};
+    public static boolean createXls=true;
+    public static boolean createDiagram=true;
+    public static boolean byLines=false;
+    public static boolean bySize=false;
+    public static final String dictionary_path="/home/hjs/code_compare/src/dictionary";
+    public static final String outputPath ="/home/hjs/cc";
+
+
+    public static double edge_weight =0.5;
+    public static double check_threshold =0.5;
+    public static double threshold=0.5;
+    public static double min_threshold=0.2;
+    public static double createIndex=1.6;
+    public static final double BAS_DIS=2;
+    public static double pow_dis=0.7;
+    public static double ADJ_DIS =2;
+    public static final double LOW_INDEX=3;
+     */
+
+    public static boolean set(String attr,String val)
+    {
+        try {
+            if (attr.contains("/"))
+            {
+//                printLog("set empty:"+attr.replace("/",""));
+                return true;
+            }
+            switch (attr) {
+                case "df": {
+                    df = new DecimalFormat(val);
+                    return true;
+                }
+                case "suffixList": {
+//                    if (!val.equals(suffixList.toString()))
+//                        printWarn("Sorry.No authority edit suffixList:"+suffixList.toString());
+//                    else
+//                        return true;
+                    suffixList= new HashSet<>();
+                    try {
+                        String[] s = val.substring(1, val.length() - 1).split(",");
+                        suffixList.addAll(Arrays.asList(s));
+                    }catch (Exception e)
+                    {
+                        return false;
+                    }
+                    return true;
+                }
+                case "createXls":{
+                    createXls=Boolean.parseBoolean(val);
+                    return true;
+                }
+                case "createDiagram":{
+                    createDiagram=Boolean.parseBoolean(val);
+                    return true;
+                }
+                case "model": {
+                    switch (val.toLowerCase()) {
+                        case "line":
+                            byLines = true;
+                            break;
+                        case "size":
+                            bySize = true;
+                            break;
+                        case "normal":
+                            return true;
+                        default:
+                            printWarn("Wrong attr for model.");
+                            return true;
+                    }
+                }
+                case "dictionary":{
+                    if (new File(val).isFile())
+                        dictionary_path = val;
+                    else
+                        printWarn("Dictionary not exist!");
+                    return true;
+                }
+                case "outputPath":{
+                    if (new File(val).exists())
+                        outputPath=val;
+                    else
+                        printWarn("No output path.Project path instead.");
+                    return true;
+                }
+                case "dotPath":
+                {
+                    if (new File(val).exists())
+                        dotPath=val;
+                    else
+                        printErr("No dot-Path set.");
+                    return true;
+                }
+                case "threshold":{
+                    threshold= Double.parseDouble(val);
+                    return true;
+                }
+                case "check":{
+                    check_threshold= Double.parseDouble(val);
+                    return true;
+                }
+                case "min":{
+                    min_threshold = Double.parseDouble(val);
+                    return true;
+                }
+                case "weight":{
+                    edge_weight=Double.parseDouble(val);
+                    return true;
+                }
+                case "pow":{
+                    pow_dis=Double.parseDouble(val);
+                    return true;
+                }
+                case "entropy":{
+                    entropyStable=Double.parseDouble(val);
+                    return true;
+                }
+                default: {
+                    printErr("Set invalid parameter:" + attr);
+                    return false;
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            printErr("Set Failed Error:"+e.toString());
+            return false;
+        }
+    }
+//    public static String get(String attr)
+//    {
+//        try {
+//            switch (attr) {
+//
+//            }
+//            return null;
+//        }catch (Exception e)
+//        {
+//            printErr("get Failed:"+e.toString());
+//            return null;
+//        }
+//    }
+    public static void load()
+    {
+        if (load(settingPath)&& load(parameterPath))
+            printSys("Auto Load xml Success.");
+        else {
+            printErr("Auto load xml Failed!");
+//            Core.init();
+        }
+    }
+
+    private static boolean load(String path) {
+        if (!new File(path).exists())
+        {
+            printWarn("Cannot file xml! Use default instead."+path);
+            FileStreamer.output(settingPath,"<xml></xml>",false);
+            return false;
+        }
+        String s=FileStreamer.input(new File(path));
+        String[]vals;
+        if (s != null) {
+            vals = s.split("\n");
+        }
+        else
+        {
+            printWarn("Fail split val.");
+            return false;
+        }
+        for (String Scanner:vals)
+        {
+            try {
+            int index=Scanner.indexOf("<");
+            int index2=Scanner.indexOf(">");
+            int index3=Scanner.indexOf("</");
+                String attr = Scanner.substring(index+1, index2);
+                String val = Scanner.substring(index2+1, index3);
+//            printLog("Set:"+attr+":"+val);
+            if (!set(attr,val))
+                printWarn("Set fail@"+attr+":"+val);
+            }catch (Exception ignored)
+            {
+
+            }
+        }
+        return true;
+    }
+
+
+    private String selectFile()
+    {
+        return  select(false);
+    }
+    private String selectFolder()
+    {
+        return select(true);
+    }
+    private String select(boolean onlyFolder)
+    {
+        JFileChooser fc = new JFileChooser();
+        if (onlyFolder)
+        fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);//只能选择目录
+        String path;
+        File f;
+        int flag = 0;
+        try{
+            flag=fc.showOpenDialog(null);
+        }
+        catch(HeadlessException head){
+            printErr("Open File Dialog ERROR!");
+        }
+        if(flag==JFileChooser.APPROVE_OPTION){
+            //获得该文件
+            f=fc.getSelectedFile();
+            path=f.getPath();
+            return path;
+        }
+        return null;
     }
 
 }

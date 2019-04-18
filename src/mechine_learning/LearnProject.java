@@ -1,6 +1,7 @@
 package mechine_learning;
 
 import file_core.ExStreamer;
+import main_core.Cmd;
 import main_core.Core;
 
 import java.util.ArrayList;
@@ -82,11 +83,13 @@ public abstract class LearnProject {
 //        check_threshold_limit2=0.8;
 //        min_threshold_limit1 =0.1;
 //        min_threshold_limit2 =0.6;
-        Core.init();
+
+        Cmd.load();
         Core.printLog=false;
         myDatas=new ArrayList<>();
         record="";
         values=new String[999][7];
+
     }
 
 
@@ -205,7 +208,7 @@ public abstract class LearnProject {
 //    }
 
     private static double getResult(LearnData Scanner) {
-        Core.init();
+        Cmd.load();
         Core.edge_weight =edge_weight;
         Core.threshold=threshold;
 //        Core.check_threshold=check_threshold;

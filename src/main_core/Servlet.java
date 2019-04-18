@@ -16,7 +16,7 @@ public class Servlet extends HttpServlet {
 
 	public Servlet()
 	{
-		Core.init();
+		Cmd.load();
 	}
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 

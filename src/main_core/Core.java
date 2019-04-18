@@ -22,50 +22,46 @@ import java.util.regex.Pattern;
  * Created by Saika on 2019/1/12.
  */
 public abstract  class Core {
+    //Setting.xml
     public static DecimalFormat df = new DecimalFormat("#.00");
-    private static final Set<String> suffixList=new HashSet<String>(){{
-        add("java");
-    }};
+    public static Set<String> suffixList=new HashSet<String>(){{add("java"); }};
     public static boolean createXls=true;
     public static boolean createDiagram=true;
-    private static boolean byLines=false;
-    private static boolean bySize=false;
-    private static double pow_dis=0.7;
-    private static double ADJ_DIS =2;
-    private static final double LOW_INDEX=3;
+    public static String dictionary_path="";
+    public static String outputPath =new File("").getAbsolutePath();
+    public static String dotPath="";
+    //private static final String spiderPath;
+    public static boolean byLines=false;
+    public static boolean bySize=false;
+    //parameter.xml
     public static double edge_weight =0.5;
-    private static double check_threshold =0.5;
+    public static double check_threshold =0.5;
     public static double threshold=0.5;
     public static double min_threshold=0.2;
+    public static  double pow_dis=0.7;
+    public static  double entropyStable=0.65;
+    //final parameter
+    public static final double createIndex=1.6;
+    public static final double BAS_DIS=2;
+    public static final double ADJ_DIS =2;
+    public static final double LOW_INDEX=3;
+    private static final double adj_sim2=1.2;
+    private static final double pow_sim2=0.3;
+    public static final double entropyToIndex=0.2;
+    public static final int adjustTimes=10;
+    //active setting
+    public static boolean printLog=true;
+    public static boolean adjust=false;
+    public static PrintWriter servletWriter;
+    private static String[] dictionary;
+//    private static final String path0="/home/hjs/KINGSTON/check/jsp-server";
+//    private static final String path1="/media/hjs/KINGSTON/check/jsp-lab";
 
-    @SuppressWarnings("FieldCanBeLocal")
-    private static double createIndex=1.6;
-
-    private static final double BAS_DIS=2;
-    private static PrintWriter servletWriter;
-    private static final String dictionary_path="/home/hjs/code_compare/src/dictionary";
-    private static final String path0="/home/hjs/KINGSTON/check/jsp-server";
-    private static final String path1="/media/hjs/KINGSTON/check/jsp-lab";
-    private static final String outputPath ="/home/hjs/cc";
-
-    public static String getSpiderPath() {
-        return spiderPath;
+    public static String getoutputPath() {
+        return outputPath;
     }
 
-    private static final String spiderPath ="/home/hjs/cc/collect";
-    private static final String dotPath="C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe";
-    private static String[] dictionary;
-    private static double adj_sim2=1.2;
-    private static double pow_sim2=0.3;
-    public static double entropyToIndex=0.2;
-    public static double entropyStable=0.65;
-    public static boolean adjust=false;
-    private static int adjustTimes=10;
-    public static boolean printLog=true;
-
 //    private static StringBuilder log=new StringBuilder();
-
-
 
     private static SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
@@ -76,72 +72,72 @@ public abstract  class Core {
 
 
     //method为方法名，value为传入参数（根据自己实际情况做修改）
-    public static boolean set(String name, String value){
-        try {
-            switch (name)
-            {
-                case("threshold"):
-                {
-                   double input;
-                   try
-                   {
-                       input=Double.valueOf(value);
-                   }catch (Exception e)
-                   {
-                       return false;
-                   }
-                   if (input>1) return false;
-                   if (input<0) return false;
-                   threshold=input;
-                   return true;
-                }
-                case("edge_weight"):
-                {
-                    double input;
-                    try
-                    {
-                        input=Double.valueOf(value);
-                    }catch (Exception e)
-                    {
-                        return false;
-                    }
-                    if (input>1) return false;
-                    if (input<0) return false;
-                    edge_weight=input;
-                    return true;
-                }
-                default:
-                {
-                    return false;
-                }
-            }
-        } catch (Exception e) {
-            printErr(e.toString());
-            return false;
-        }
-    }
-    public  static String get(String name){
-        try {
-            switch (name)
-            {
-                case("threshold"):
-                {
-                    return String.valueOf(threshold);
-                }
-                case("edge_weight"):
-                {
-                    return String.valueOf(edge_weight);
-                }
-                default:
-                {
-                    return null;
-                }
-            }
-        } catch (Exception e) {
-            printErr(e.toString());
-            return null;
-        }
-    }
+//    public static boolean set(String name, String value){
+//        try {
+//            switch (name)
+//            {
+//                case("threshold"):
+//                {
+//                   double input;
+//                   try
+//                   {
+//                       input=Double.valueOf(value);
+//                   }catch (Exception e)
+//                   {
+//                       return false;
+//                   }
+//                   if (input>1) return false;
+//                   if (input<0) return false;
+//                   threshold=input;
+//                   return true;
+//                }
+//                case("edge_weight"):
+//                {
+//                    double input;
+//                    try
+//                    {
+//                        input=Double.valueOf(value);
+//                    }catch (Exception e)
+//                    {
+//                        return false;
+//                    }
+//                    if (input>1) return false;
+//                    if (input<0) return false;
+//                    edge_weight=input;
+//                    return true;
+//                }
+//                default:
+//                {
+//                    return false;
+//                }
+//            }
+//        } catch (Exception e) {
+//            printErr(e.toString());
+//            return false;
+//        }
+//    }
+//    public  static String get(String name){
+//        try {
+//            switch (name)
+//            {
+//                case("threshold"):
+//                {
+//                    return String.valueOf(threshold);
+//                }
+//                case("edge_weight"):
+//                {
+//                    return String.valueOf(edge_weight);
+//                }
+//                default:
+//                {
+//                    return null;
+//                }
+//            }
+//        } catch (Exception e) {
+//            printErr(e.toString());
+//            return null;
+//        }
+//    }
 
     public static void printLog(Object s)
     {
@@ -214,26 +210,24 @@ public abstract  class Core {
 //            printWarn("[init]Setting load fail@"+e.toString());
 //        }
 //    }
-    public static void init()
-    {
-        printLog=false;
-        createXls=false;
-        createDiagram=false;
-        byLines=false;
-        bySize=false;
-        ADJ_DIS =1;
-        pow_dis=1;
-        edge_weight =0.5;
-        threshold=0.6;
-        check_threshold =0.6;
-        adjust=false;
-        String s= FileStreamer.input(new File(dictionary_path));
-        if (s==null)
-            dictionary= null;
-        if (s != null) {
-            dictionary=s.split(",");
-        }
-    }
+//    public static void init()
+//    {
+//        printLog=false;
+//        createXls=false;
+//        createDiagram=false;
+//        byLines=false;
+//        bySize=false;
+//        edge_weight =0.5;
+//        threshold=0.6;
+//        check_threshold =0.6;
+//        adjust=false;
+//        String s= FileStreamer.input(new File(dictionary_path));
+//        if (s==null)
+//            dictionary= null;
+//        if (s != null) {
+//            dictionary=s.split(",");
+//        }
+//    }
 
 //    public static double compare_cd(String s) {
 //        return compare(new CodeFile(new File(s)));
@@ -275,16 +269,16 @@ public abstract  class Core {
         return BAS_DIS+ ADJ_DIS /Math.pow(times,pow_dis);
     }
 
-    public static double example(){
-        init();
-        int projectSize = 2;
-        String[] paths = new String[projectSize];
-        paths[0]=path0;
-        paths[1]=path1;
-        ////  printLog(();
-        ////  printLog(("Result->" + df.format(result * 100) + "%");
-        return compare(paths[0], paths[1]);
-    }
+//    public static double example(){
+//        init();
+//        int projectSize = 2;
+//        String[] paths = new String[projectSize];
+//        paths[0]=path0;
+//        paths[1]=path1;
+//        ////  printLog(();
+//        ////  printLog(("Result->" + df.format(result * 100) + "%");
+//        return compare(paths[0], paths[1]);
+//    }
 
 
 //
@@ -364,15 +358,15 @@ public abstract  class Core {
     public static double compare(CodeFile cf)//1-N
     {
         double similar = 0;
-        File[] paths=new File(spiderPath).listFiles();
+        File[] paths=new File(outputPath).listFiles();
         printLog(Arrays.toString(paths));
         if (paths==null)
         {
-            printErr("Group '"+spiderPath+"' is null.");
+            printErr("Group '"+outputPath+"' is null.");
             return -1;
         }
         if (paths.length==0)
-            printWarn("Group '"+spiderPath+"' is empty size code.");
+            printWarn("Group '"+outputPath+"' is empty size code.");
 
         for(File Scanner:paths)
             try {
@@ -663,7 +657,7 @@ public abstract  class Core {
             attrs.add("vertex_Similar");
             attrs.add("edge_Similar");
             //  attrs.add("Similar");
-            String path= "[" + diagram1.getName() + "]-[" + diagram2.getName() + "]"+"S:" + df.format(result) +".xls";
+            String path= "[" + diagram1.getName() + "]-[" + diagram2.getName() + "]"+"S" + df.format(result) +".xls";
             printSys(path);
             new ExStreamer(path).excelOut(vertexList1.size(), attrs, values);
         }

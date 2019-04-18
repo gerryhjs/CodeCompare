@@ -63,7 +63,7 @@ public class SpiderCatcher {
 //			if (find)
 			{
 				SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddhhmmss");
-				FileStreamer.output(Core.getSpiderPath() + File.separator + sdf.format(new Date())+".txt",html.toString()+ "\r\n",true);
+				FileStreamer.output(Core.getoutputPath() + File.separator + sdf.format(new Date())+".txt",html.toString()+ "\r\n",true);
 			}
 //
 		} catch (Exception e) {

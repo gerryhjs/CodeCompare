@@ -1,14 +1,12 @@
 package main_core;
 
 import compare_core.CodeCompare;
+import file_core.CodeFile;
 import file_core.ExStreamer;
+import file_core.FolderScanner;
 import graph.Diagram;
 import graph.Vertex;
-import file_core.CodeFile;
-import file_core.FileStreamer;
-import file_core.FolderScanner;
 import graphViz.GraphVizTest;
-import org.apache.poi.ss.formula.functions.Code;
 
 import java.io.File;
 import java.io.PrintWriter;
@@ -28,7 +26,7 @@ public abstract  class Core {
     public static boolean createXls=true;
     public static boolean createDiagram=true;
     public static String dictionary_path="";
-    public static String outputPath =new File("").getAbsolutePath();
+    public static String outputPath =new File("").getAbsolutePath()+File.separator+"out";
     public static String dotPath="";
     //private static final String spiderPath;
     public static boolean byLines=false;

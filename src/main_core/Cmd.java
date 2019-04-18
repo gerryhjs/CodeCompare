@@ -30,7 +30,9 @@ public class Cmd {
     public static void deal(String input) {
         load();
         printSys("run>>"+input);
-        String[] cmds=new String[]{"compare","compare_inGroup","compare_betweenGroup","compare_toGroup","log","init","hello","draw","training","spider","compare_online"};
+        String[] cmds=new String[]{"compare","compare_inGroup","compare_betweenGroup","compare_toGroup",
+                "log","init","hello","check","training","spider","compare_online",
+                "quickCompare","quickGroup","quickCheck"};
         try
         {
             String[] cmd=input.split(" ");
@@ -66,7 +68,7 @@ public class Cmd {
                         break;
                     }
                 }
-                case "draw":{
+                case "check":{
                     if (cmd.length==2)
                     {
                         createDiagram=true;
@@ -77,7 +79,7 @@ public class Cmd {
                     }
                     else
                     {
-                        printErr("'draw' should with 1 parameters");
+                        printErr("'check' should with 1 parameters");
                         break;
                     }
                 }
@@ -224,30 +226,42 @@ public class Cmd {
                         break;
                     }
                 }
-                case "spider":
-                    if (cmd.length==3)
-                    {
-                        SpiderWebsite w=new SpiderWebsite();
-                        w.extractLinks(cmds[1],Long.valueOf(cmds[2]));
+                case "spider": {
+                    if (cmd.length == 3) {
+                        SpiderWebsite w = new SpiderWebsite();
+                        w.extractLinks(cmds[1], Long.valueOf(cmds[2]));
                         printSys("Spider start.");
                         break;
-                    }
-                    else
-                    {
+                    } else {
                         printErr("'spider' should with 1 parameter");
                         break;
                     }
-                case "training":
-                    if (cmd.length==3)
-                    {
-                        printSys(LearnProject.training(cmds[1],Integer.valueOf(cmds[2])));
+                }
+                case "training": {
+                    if (cmd.length == 3) {
+                        printSys(LearnProject.training(cmds[1], Integer.valueOf(cmds[2])));
                         break;
-                    }
-                    else
-                    {
+                    } else {
                         printErr("'training' should with 2 parameter");
                         break;
                     }
+                }
+                case "quickCompare":{
+                    String path1=selectFolder();
+                    String path2=selectFolder();
+                    printSys(Core.compare(path1,path2));
+                    break;
+                }
+                case "quickGroup":{
+                    String path1=selectFolder();
+                    printSys(Core.compare_inGroup(path1));
+                    break;
+                }
+                case "quickCheck":{
+                    String path1=selectFolder();
+                    check(path1);
+                    break;
+                }
                 default: {
                     double maxSimilar=0.5;
                     String guess=null;
@@ -449,11 +463,11 @@ public class Cmd {
     {
         return  select(false);
     }
-    private String selectFolder()
+    private static String selectFolder()
     {
         return select(true);
     }
-    private String select(boolean onlyFolder)
+    private static String select(boolean onlyFolder)
     {
         JFileChooser fc = new JFileChooser();
         if (onlyFolder)

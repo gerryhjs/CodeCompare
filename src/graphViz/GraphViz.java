@@ -77,11 +77,11 @@ class  GraphViz{
         runOrder+=dotPath+" ";
         runOrder+=runPath;
         runOrder+=File.separator+dotCodeFile+" ";
-        runOrder+="-Tpng ";
+        runOrder+="-T png ";
         runOrder+="-o ";
         runOrder+=runPath;
         runOrder+=File.separator+resultGif+".png";
-        //printLog((runOrder);
+        printLog(runOrder);
     }
 
     private void writeGraphToFile(String dotcode, String filename) {

@@ -32,7 +32,7 @@ edge [shape=plaintext, fontname="Microsoft Yahei"];
         } catch (Exception e) {
             e.printStackTrace();
         }
-        gViz.delete();
+//        gViz.delete();
     }
 
 

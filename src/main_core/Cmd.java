@@ -17,8 +17,8 @@ public class Cmd {
     private static final String parameterPath=new File("").getAbsolutePath()+File.separator+"parameter.xml";
     public static void  main(String[] args)
     {
+        load();
         deal("hello");
-
         Scanner scanner= new Scanner(System.in);
         for(int i=0;i<=999;i++)
         {
@@ -28,7 +28,6 @@ public class Cmd {
     }
 
     public static void deal(String input) {
-        load();
         printSys("run>>"+input);
         String[] cmds=new String[]{"compare","compare_inGroup","compare_betweenGroup","compare_toGroup",
                 "log","init","hello","check","training","spider","compare_online",

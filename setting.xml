@@ -1,0 +1,13 @@
+<xml>
+    <df>0.00</df>
+    <suffixList>[java,cpp]</suffixList>
+    <createXls>true</createXls>
+    <createDiagram>true</createDiagram>
+    <!--model only allow[normal,line,size]-->
+    <model>size</model>
+    <dictionary/>
+    <outputPath/>
+    <!--dot path only use for windows os.-->
+    <dotPath>C:\Program Files (x86)\Graphviz2.38\bin\dot.exe</dotPath>
+
+</xml>

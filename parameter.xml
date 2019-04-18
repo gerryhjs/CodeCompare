@@ -1,0 +1,9 @@
+<xml>
+    <!--should be 0-1 -->
+    <threshold>0.5</threshold>
+    <weight>0.5</weight>
+    <check>0.5</check>
+    <!--should be 0-1 -->
+    <min>0.2</min>
+    <pow>0.7</pow>
+</xml>

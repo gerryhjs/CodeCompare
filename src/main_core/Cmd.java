@@ -17,7 +17,6 @@ public class Cmd {
     private static final String parameterPath=new File("").getAbsolutePath()+File.separator+"parameter.xml";
     public static void  main(String[] args)
     {
-        load();
         deal("hello");
 
         Scanner scanner= new Scanner(System.in);
@@ -277,30 +276,6 @@ public class Cmd {
 
     }
 
-
-
-    /*
-    public static DecimalFormat df = new DecimalFormat("#.00");
-    public static final Set<String> suffixList=new HashSet<String>(){{add("java"); }};
-    public static boolean createXls=true;
-    public static boolean createDiagram=true;
-    public static boolean byLines=false;
-    public static boolean bySize=false;
-    public static final String dictionary_path="/home/hjs/code_compare/src/dictionary";
-    public static final String outputPath ="/home/hjs/cc";
-
-
-    public static double edge_weight =0.5;
-    public static double check_threshold =0.5;
-    public static double threshold=0.5;
-    public static double min_threshold=0.2;
-    public static double createIndex=1.6;
-    public static final double BAS_DIS=2;
-    public static double pow_dis=0.7;
-    public static double ADJ_DIS =2;
-    public static final double LOW_INDEX=3;
-     */
-
     public static boolean set(String attr,String val)
     {
         try {
@@ -371,7 +346,7 @@ public class Cmd {
                     if (new File(val).exists())
                         dotPath=val;
                     else
-                        printErr("No dot-Path set.");
+                        printWarn("No dot-Path set.");
                     return true;
                 }
                 case "threshold":{

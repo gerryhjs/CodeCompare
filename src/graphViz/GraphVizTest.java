@@ -1,7 +1,5 @@
 package graphViz;
-
 import main_core.Core;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 

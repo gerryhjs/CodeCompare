@@ -297,8 +297,8 @@ public abstract  class Core {
 
     public static double compare(String path0, String path1)//1-1
     {
-        boolean tmp=createDiagram;
-        createDiagram=false;
+//        boolean tmp=createDiagram;
+//        createDiagram=false;
         int projectSize = 2;
         String[] paths = new String[projectSize];
         paths[0] = path0;
@@ -314,7 +314,7 @@ public abstract  class Core {
             if (projects[i].getVertexList().size()==0)
                 printWarn("Project '"+paths[i]+"' is empty size code.");
         }
-        createDiagram=tmp;
+//        createDiagram=tmp;
         return compareDiagram(projects[0],projects[1]);
     }
     public static double compare_toGroup(String path1,String path2)//1-N

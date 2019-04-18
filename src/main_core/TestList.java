@@ -60,7 +60,7 @@ public class TestList {
     @Test
     public void draw_test()
     {
-        Core.createDiagram=true;
+        //Core.createDiagram=true;
         Core.adjust=false;
         Core.check("/home/hjs/CodeCompare/");
         Core.adjust=true;
@@ -71,16 +71,16 @@ public class TestList {
     @Test
     public void Factory_test()
     {
-        Core.createXls=true;
-        Core.createDiagram=true;
+        //Core.createDiagram=true;
+        //Core.createDiagram=true;
         double result=Core.compare("/media/hjs/KINGSTON/check/jsp-lab","/media/hjs/KINGSTON/check/Predict");
         printSys(result);
     }
     @Test
     public void singleCompare_test()
     {
-        Core.createXls=true;
-        Core.createDiagram=true;
+//        Core.createXls=true;
+        //Core.createDiagram=true;
         printSys(Core.compare("/media/hjs/KINGSTON/check/1.java"));
     }
     @Test

@@ -70,10 +70,10 @@ public class Cmd {
                 case "check":{
                     if (cmd.length==2)
                     {
-                        createDiagram=true;
+//                        createDiagram=true;
                         check(cmd[1]);
                         printSys("Finished");
-                        createDiagram=false;
+//                        createDiagram=false;
                         break;
                     }
                     else

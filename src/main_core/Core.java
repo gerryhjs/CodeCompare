@@ -212,7 +212,7 @@ public abstract  class Core {
 //    {
 //        printLog=false;
 //        createXls=false;
-//        createDiagram=false;
+//        //createDiagram=false;
 //        byLines=false;
 //        bySize=false;
 //        edge_weight =0.5;
@@ -298,7 +298,7 @@ public abstract  class Core {
     public static double compare(String path0, String path1)//1-1
     {
         boolean tmp=createDiagram;
-        createDiagram=false;
+        //createDiagram=false;
         int projectSize = 2;
         String[] paths = new String[projectSize];
         paths[0] = path0;

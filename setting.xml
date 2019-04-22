@@ -1,6 +1,6 @@
 <xml>
     <df>0.00</df>
-    <suffixList>[java,c,cpp,py,js,jsp,html]</suffixList>
+    <suffixList>[java]</suffixList>
     <createXls>true</createXls>
     <createDiagram>true</createDiagram>
     <model>size</model><!--normal/size/line-->

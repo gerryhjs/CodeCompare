@@ -1,7 +1,7 @@
 <xml>
-    <threshold>0.5</threshold><!--should be 0-1 -->
-    <weight>0.5</weight><!--should be 0-1 -->
-    <check>0.5</check><!--should be 0-1 -->
+    <threshold>0.2</threshold> <!--should be 0-1 -->
+    <weight>0.5</weight> <!--should be 0-1 --> <!--use weight=0 to disabled edge compare.-->
+    <check>0.5</check> <!--should be 0-1 -->
     <min>0.2</min>   <!--should be 0-0.5 -->
     <pow>0.7</pow>   <!--should be 0-10 -->
 </xml>

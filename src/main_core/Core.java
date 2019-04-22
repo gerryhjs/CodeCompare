@@ -7,6 +7,7 @@ import file_core.FolderScanner;
 import graph.Diagram;
 import graph.Vertex;
 import graphViz.GraphVizTest;
+import mechine_learning.LearnProject;
 
 import java.io.File;
 import java.io.PrintWriter;
@@ -26,7 +27,7 @@ public abstract  class Core {
     public static boolean createXls=true;
     public static boolean createDiagram=true;
     public static String dictionary_path="";
-    public static String outputPath =new File("").getAbsolutePath()+File.separator+"out";
+    public static String outputPath =new File("").getAbsolutePath()+File.separator+"output";
     public static String dotPath="";
     //private static final String spiderPath;
     public static boolean byLines=false;
@@ -56,6 +57,17 @@ public abstract  class Core {
     public static String mode;
     public static String path1;
     public static String path2;
+    public static String train;
+    public static int times;
+
+    public static void trainMode()
+    {
+        createDiagram=false;
+        createXls=false;
+        printLog=false;
+    }
+
+
 
     public static String getoutputPath() {
         return outputPath;
@@ -69,6 +81,7 @@ public abstract  class Core {
 
     public static void AutoRun()
     {
+        Cmd.load();
         switch (mode)
         {
             case "single":{
@@ -87,6 +100,10 @@ public abstract  class Core {
             case "group":{
                 compare_inGroup(path1);
                 break;
+            }
+            case "train":{
+                LearnProject.init();
+                LearnProject.training(train,times);
             }
             default:{
                 printWarn("wrong action@"+mode);
@@ -165,13 +182,18 @@ public abstract  class Core {
     public static void printLog(Object s)
     {
         s=sdf.format(new Date())+"::"+s;
-        System.out.println("[info]" + s);
         if(printLog) {
             try {
+                System.out.println("[info]" + s);
                 servletWriter.write("[info]" + s + "\r\n");
             }catch (Exception ignored)
             {
+
             }
+        }
+        else
+        {
+            System.out.print(".");
         }
     }
     public static void printSys(Object s)

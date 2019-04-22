@@ -1,8 +1,6 @@
 package main_core;
 
-import compare_core.CodeCompare;
 import compare_core.StringCompare;
-import file_core.CodeFile;
 import file_core.FileStreamer;
 import mechine_learning.LearnProject;
 import webspider.SpiderWebsite;
@@ -17,6 +15,7 @@ import static main_core.Core.*;
 public class Cmd {
     private static final String settingPath=new File("").getAbsolutePath()+File.separator+"setting.xml";
     private static final String parameterPath=new File("").getAbsolutePath()+File.separator+"parameter.xml";
+    private static final String workPath=new File("").getAbsolutePath()+File.separator+"work.xml";
     public static void  main(String[] args)
     {
         load();
@@ -351,8 +350,8 @@ public class Cmd {
                 case "dictionary":{
                     if (new File(val).isFile())
                         dictionary_path = val;
-                    else
-                        printWarn("Dictionary not exist!");
+//                    else
+//                        printWarn("Dictionary not exist!");
                     return true;
                 }
                 case "outputPath":{
@@ -406,6 +405,15 @@ public class Cmd {
                     path2=val;
                     return true;
                 }
+                case "train":{
+                    train=val;
+                    return true;
+                }
+                case "times":{
+                    times=Integer.parseInt(val);
+                    return true;
+                }
+
                 default: {
                     printErr("Set invalid parameter:" + attr);
                     return false;
@@ -433,18 +441,14 @@ public class Cmd {
 //    }
     public static void load()
     {
-        if (load(settingPath)&& load(parameterPath))
+        if (load(settingPath)&& load(parameterPath)&& load(workPath))
             printSys("Auto Load xml Success.");
-        else {
-            printErr("Auto load xml Failed!");
-//            Core.init();
-        }
     }
 
     static boolean load(String path) {
         if (!new File(path).exists())
         {
-            printWarn("Cannot file xml! Use default instead."+path);
+            printWarn("Cannot file xml! Use default instead::"+path);
             FileStreamer.output(settingPath,"<xml></xml>",false);
             return false;
         }
@@ -455,7 +459,7 @@ public class Cmd {
         }
         else
         {
-            printWarn("Fail split val.");
+            printWarn("Fail split val::"+path);
             return false;
         }
         for (String Scanner:splitVal)
@@ -477,6 +481,19 @@ public class Cmd {
         return true;
     }
 
+
+    public static void setParameter(String attr, String val)
+    {
+        String txt=FileStreamer.input(new File(parameterPath));
+        if (txt==null) return;
+        int index1=txt.indexOf("<"+attr+">");
+        int index2=txt.indexOf("</"+attr+">");
+
+        if ((index1>0)&&(index2>0))
+        txt=txt.substring(0,index1+("<"+attr+">").length())+val+txt.substring(index2);
+
+        FileStreamer.output(parameterPath,txt,false);
+    }
 
     private static String selectFile()
     {

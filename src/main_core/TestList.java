@@ -163,6 +163,12 @@ public class TestList {
         return null;
     }
 
+    @Test
+    public void testSet()
+    {
+        Cmd.setParameter("threshold", String.valueOf(0.2));
+    }
+
 
 
 /*

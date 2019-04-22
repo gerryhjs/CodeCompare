@@ -12,8 +12,8 @@ public abstract class LearnProject {
 
     private static ArrayList<LearnData> myDatas;
     private static String record="";
-    private static double edge_weight;//边权重 必选训练项
-    private static double threshold;//相似度阈值 必选训练项
+    public static double edge_weight;//边权重 必选训练项
+    public static double threshold;//相似度阈值 必选训练项
 //    private static double pow_dis;//距离收缩参数 可选训练项
 //    private static double check_threshold;//近似相似度阈值 建议训练项
 //    private static double min_threshold;//字符串阈值 可选训练项
@@ -83,13 +83,9 @@ public abstract class LearnProject {
 //        check_threshold_limit2=0.8;
 //        min_threshold_limit1 =0.1;
 //        min_threshold_limit2 =0.6;
-
-        Cmd.load();
-        Core.printLog=false;
         myDatas=new ArrayList<>();
         record="";
         values=new String[999][7];
-
     }
 
 
@@ -103,6 +99,7 @@ public abstract class LearnProject {
 //    }
     public static String training(int time)
     {
+        Core.trainMode();
         if (size==0) size=time;
         double minAcc=1;
         double maxAcc=0;
@@ -194,6 +191,7 @@ public abstract class LearnProject {
             size=0;
 //            printLog((infoD());
             printSys(record);
+            Cmd.load();
             return record;
         }
         return training(time-1);
@@ -208,7 +206,7 @@ public abstract class LearnProject {
 //    }
 
     private static double getResult(LearnData Scanner) {
-        Cmd.load();
+//        Cmd.load();
         Core.edge_weight =edge_weight;
         Core.threshold=threshold;
 //        Core.check_threshold=check_threshold;
@@ -245,7 +243,7 @@ public abstract class LearnProject {
     }
 
     public static Object training(String cmd, int times) {
-        String[] datas=cmd.split(";");
+        String[] datas=cmd.substring(1,cmd.length()-1).split(";");
         for (String Scanner:datas)
         {
             String[] tags=Scanner.split(",");

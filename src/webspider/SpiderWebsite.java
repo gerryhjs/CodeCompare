@@ -187,8 +187,7 @@ public class SpiderWebsite {
     }
     public boolean pd(String url)
     {
-        if (url.length()==0) return false;
-    	return true;
+        return url.length() != 0;
     }
 //    public static String GetHostName(String host) {
 //        URL aurl;

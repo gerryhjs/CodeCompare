@@ -1,0 +1,5 @@
+<xml>
+    <mode>compare</mode><!--single/compare/group-->
+    <path1>/media/hjs/KINGSTON/check/jsp-lab</path1>
+    <path2>/media/hjs/KINGSTON/check/predict</path2>
+</xml>

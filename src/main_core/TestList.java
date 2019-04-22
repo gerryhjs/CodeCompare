@@ -5,19 +5,13 @@ import compare_core.StringCompare;
 import file_core.CodeFile;
 import file_core.FileStreamer;
 import graphViz.GraphVizTest;
-import main_core.Core;
-import main_core.Servlet;
 import mechine_learning.LearnProject;
 import org.junit.Test;
 import webspider.SpiderWebsite;
-
 import javax.swing.*;
-import javax.swing.filechooser.FileSystemView;
 import java.awt.*;
 import java.io.File;
-import java.util.Scanner;
 
-import static main_core.Cmd.deal;
 import static main_core.Core.*;
 
 public class TestList {

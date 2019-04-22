@@ -43,17 +43,19 @@ public abstract  class Core {
     public static final double BAS_DIS=2;
     public static final double ADJ_DIS =2;
     public static final double LOW_INDEX=3;
-    private static final double adj_sim2=1.2;
-    private static final double pow_sim2=0.3;
+    public static final double adj_sim2=1.2;
+    public static final double pow_sim2=0.3;
     public static final double entropyToIndex=0.2;
     public static final int adjustTimes=10;
     //active setting
     public static boolean printLog=true;
     public static boolean adjust=false;
     public static PrintWriter servletWriter;
-    private static String[] dictionary;
-//    private static final String path0="/home/hjs/KINGSTON/check/jsp-server";
-//    private static final String path1="/media/hjs/KINGSTON/check/jsp-lab";
+    public static String[] dictionary;
+
+    public static String mode;
+    public static String path1;
+    public static String path2;
 
     public static String getoutputPath() {
         return outputPath;
@@ -63,11 +65,29 @@ public abstract  class Core {
 
     private static SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
+//    public static Object obj;
 
-
-    public static Object obj;
-
-
+    public static void AutoRun()
+    {
+        switch (mode)
+        {
+            case "single":{
+                check(path1);
+                break;
+            }
+            case "compare":{
+                compare(path1,path2);
+                break;
+            }
+            case "group":{
+                compare_inGroup(path1);
+                break;
+            }
+            default:{
+                printWarn("wrong action@"+mode);
+            }
+        }
+    }
 
     //method为方法名，value为传入参数（根据自己实际情况做修改）
 //    public static boolean set(String name, String value){

@@ -386,6 +386,18 @@ public class Cmd {
                     entropyStable=Double.parseDouble(val);
                     return true;
                 }
+                case "mode":{
+                    mode=val;
+                    return true;
+                }
+                case "path1":{
+                    path1=val;
+                    return true;
+                }
+                case "path2":{
+                    path2=val;
+                    return true;
+                }
                 default: {
                     printErr("Set invalid parameter:" + attr);
                     return false;
@@ -421,7 +433,7 @@ public class Cmd {
         }
     }
 
-    private static boolean load(String path) {
+    static boolean load(String path) {
         if (!new File(path).exists())
         {
             printWarn("Cannot file xml! Use default instead."+path);

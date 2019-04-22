@@ -772,9 +772,7 @@ public abstract  class Core {
         }
         GraphVizTest gvt=new GraphVizTest();
         gvt.draw(Edges.toString(),"Diagram_"+diagram.getName());
-
     }
-
 
     public static Diagram check(String path) {
         String[] temp;

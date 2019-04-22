@@ -104,6 +104,9 @@ public abstract  class Core {
             case "train":{
                 LearnProject.init();
                 LearnProject.training(train,times);
+                Cmd.setParameter("threshold", String.valueOf(LearnProject.threshold));
+                Cmd.setParameter("weight", String.valueOf(LearnProject.edge_weight));
+                break;
             }
             default:{
                 printWarn("wrong action@"+mode);

@@ -135,7 +135,7 @@ public abstract class LearnProject {
                                 sumDiff+=getDiff(Scanner);
                             }
                             double accurate = deal(Math.pow(1 - sumDiff / myDatas.size() * expansion,1/approachIndex));
-                            printLog(Core.df.format(accurate *100)+"%");
+                            printSys(Core.df.format(accurate *100)+"%");
                             sumAcc+=accurate;
                             if (accurate >maxAcc)
                             {

@@ -3,6 +3,6 @@
     <path1>/home/hjs/CodeCompare</path1>
     <path2></path2>
     <!--only for train-->
-    <train>[/home/hjs/桌面/CodeCompare,/home/hjs/CodeCompare,true;/home/hjs/CodeCompare,/home/hjs/loginExample,false]</train>
+    <train>[/home/hjs/桌面/CodeCompare,/home/hjs/CodeCompare,true;/home/hjs/桌面/CodeCompare,/home/hjs/loginExample,false]</train>
     <times>1</times>
 </xml>

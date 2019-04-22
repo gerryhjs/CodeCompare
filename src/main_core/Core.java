@@ -539,9 +539,7 @@ public abstract  class Core {
              if (like!=null) printLog("==>"+like.info()+":"+df.format(maxSimilar * 100) + "%");
             likely.put(Scanner, result);
             values[index - 1][0] = Scanner.info();
-
             values[index - 1][2] = df.format(maxSimilar * 100) + "%";
-
             if (result != null) {
                 values[index - 1][1] = result.info();
                 diagram1.getVertex(Scanner.getFileName()).setAppend("->"+result.getFileName());
@@ -754,7 +752,7 @@ public abstract  class Core {
                     if ((!Scanner.getPackageName().equals(Scanner2.getPackageName()))&&(create))
                         style+="style=bold,";
                     if (weight>1)
-                    s.append("\"").append(Scanner.getFileName()).append("\"").append("->").append("\"").append(Scanner2.getFileName()).append("\"").append(" ").append("[").append(style).append("label=\"").append(df.format(weight)).append("\"]\n");
+                        s.append("\"").append(Scanner.getFileName()).append("\"").append("->").append("\"").append(Scanner2.getFileName()).append("\"").append(" ").append("[").append(style).append("label=\"").append(df.format(weight)).append("\"]\n");
                     else
                         s.append("\"").append(Scanner.getFileName()).append("\"").append("->").append("\"").append(Scanner2.getFileName()).append("\"").append(" ").append("[").append(style).append("label=\"").append(df.format(weight*100)).append("%\"]\n");
                     edges.add(s.toString());
@@ -773,13 +771,13 @@ public abstract  class Core {
                 {
                     Edges.append("\"").append(Scanner).append("\"").append("[color=blue]").append(";\n");
                 }
-                else if(vertex1.notRelate())
-                {
-                    Edges.append("\"").append(Scanner).append("\"").append("[color=yellow]").append(";\n");
-                }
-                else if (vertex1.needRefactor()) {
-                    Edges.append("\"").append(Scanner).append("\"").append("[color=red]").append(";\n");
-                }
+//                else if(vertex1.notRelate())
+//                {
+//                    Edges.append("\"").append(Scanner).append("\"").append("[color=yellow]").append(";\n");
+//                }
+//                else if (vertex1.needRefactor()) {
+//                    Edges.append("\"").append(Scanner).append("\"").append("[color=red]").append(";\n");
+//                }
                 else
                     Edges.append("\"").append(Scanner).append("\"").append(";\n");
             }

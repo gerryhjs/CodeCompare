@@ -76,7 +76,12 @@ public abstract  class Core {
                 break;
             }
             case "compare":{
-                compare(path1,path2);
+                if ((new File(path1).exists())&&(new File(path2).exists())) {
+                    if ((new File(path1).isFile())&&(new File(path2).isFile()))
+                            printSys(compare_file(path1, path2));
+                        else
+                            printSys(compare(path1, path2));
+                }
                 break;
             }
             case "group":{
@@ -696,15 +701,12 @@ public abstract  class Core {
     }
 
     private static Set<Vertex> clone(Set<Vertex> vertexList) {
-        Set<Vertex> clone=new HashSet<>();
-        clone.addAll(vertexList);
-        return clone;
+        return new HashSet<>(vertexList);
     }
 
     private static boolean checkCode(Vertex scanner) {
         if (scanner.getCf().getSize()<=10) return false;
-        if (scanner.getCf().getLines()<=1) return false;
-        return true;
+        return scanner.getCf().getLines() > 1;
     }
 
     public static boolean refactor(Diagram diagram)
@@ -771,10 +773,10 @@ public abstract  class Core {
                 {
                     Edges.append("\"").append(Scanner).append("\"").append("[color=blue]").append(";\n");
                 }
-//                else if(vertex1.notRelate())
-//                {
-//                    Edges.append("\"").append(Scanner).append("\"").append("[color=yellow]").append(";\n");
-//                }
+                else if(vertex1.notRelate())
+                {
+                    Edges.append("\"").append(Scanner).append("\"").append("[color=yellow]").append(";\n");
+                }
 //                else if (vertex1.needRefactor()) {
 //                    Edges.append("\"").append(Scanner).append("\"").append("[color=red]").append(";\n");
 //                }
@@ -783,9 +785,7 @@ public abstract  class Core {
             }
             Edges.append("}").append("\n");
         }
-        for(int i=0;i<edges.size();i++)
-        {
-            String Scanner=edges.get(i);
+        for (String Scanner : edges) {
             Edges.append(Scanner);
         }
         GraphVizTest gvt=new GraphVizTest();
@@ -1017,5 +1017,9 @@ public abstract  class Core {
         return false;
     }
 
+    public static double compare_file(String path1,String path2)
+    {
+        return CodeCompare.compare(new CodeFile(new File(path1)),new CodeFile(new File(path2)));
+    }
 
 }

@@ -1,5 +1,5 @@
 <xml>
-    <mode>compare</mode><!--single/compare/group-->
+    <mode>single</mode><!--single/compare/group-->
     <path1>/home/hjs/CodeCompare</path1>
-    <path2>/media/hjs/KINGSTON/check/bigdata</path2>
+    <path2></path2>
 </xml>

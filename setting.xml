@@ -1,11 +1,11 @@
 <xml>
     <df>0.00</df>
-    <suffixList>[java,cpp]</suffixList>
+    <suffixList>[java,c,cpp,py,js,jsp,html]</suffixList>
     <createXls>true</createXls>
     <createDiagram>true</createDiagram>
     <model>size</model><!--normal/size/line-->
     <dictionary></dictionary>
-    <outputPath></outputPath><!--dot path only use for windows os.-->
-    <dotPath>C:\Program Files (x86)\Graphviz2.38\bin\dot.exe</dotPath>
+    <outputPath></outputPath>
+    <dotPath>C:\Program Files (x86)\Graphviz2.38\bin\dot.exe</dotPath><!--dot path only use for windows os.-->
 
 </xml>

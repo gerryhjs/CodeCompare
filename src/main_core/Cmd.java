@@ -1,6 +1,8 @@
 package main_core;
 
+import compare_core.CodeCompare;
 import compare_core.StringCompare;
+import file_core.CodeFile;
 import file_core.FileStreamer;
 import mechine_learning.LearnProject;
 import webspider.SpiderWebsite;
@@ -31,12 +33,18 @@ public class Cmd {
         printSys("run>>"+input);
         String[] cmds=new String[]{"compare","compare_inGroup","compare_betweenGroup","compare_toGroup",
                 "log","init","hello","check","training","spider","compare_online",
-                "quickCompare","quickGroup","quickCheck"};
+                "quickCompare","quickGroup","quickCheck","quickCompareFIle"};
         try
         {
             String[] cmd=input.split(" ");
             switch (cmd[0])
             {
+                case "quickCompareFile":{
+                    String path1=selectFile();
+                    String path2=selectFile();
+                    printSys(compare_file(path1,path2));
+                    break;
+                }
                 case "compare":{
                     if (cmd.length==3)
                     {
@@ -441,16 +449,16 @@ public class Cmd {
             return false;
         }
         String s=FileStreamer.input(new File(path));
-        String[]vals;
+        String[] splitVal;
         if (s != null) {
-            vals = s.split("\n");
+            splitVal = s.split("\n");
         }
         else
         {
             printWarn("Fail split val.");
             return false;
         }
-        for (String Scanner:vals)
+        for (String Scanner:splitVal)
         {
             try {
             int index=Scanner.indexOf("<");
@@ -470,7 +478,7 @@ public class Cmd {
     }
 
 
-    private String selectFile()
+    private static String selectFile()
     {
         return  select(false);
     }

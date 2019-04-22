@@ -14,10 +14,10 @@ import static main_core.Cmd.deal;
 public class Servlet extends HttpServlet {
 //	private DecimalFormat df = new DecimalFormat("#.00");
 
-	public Servlet()
-	{
-		Cmd.load();
-	}
+//	public Servlet()
+//	{
+//		Cmd.load();
+//	}
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
 		request.setCharacterEncoding("utf-8");

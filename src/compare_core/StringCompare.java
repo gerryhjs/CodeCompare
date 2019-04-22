@@ -87,8 +87,6 @@ public abstract class StringCompare {
                     temp = 1;
                 diff[i][j] = min(diff[i - 1][j] + 1, diff[i][j - 1] + 1, diff[i - 1][j - 1] + temp);
             }
-
-
 //            System.out.print("   ");
 //            for (int j = 1; j <= s2.length(); j++)
 //                System.out.print(s2.charAt(j-1)+"  ");

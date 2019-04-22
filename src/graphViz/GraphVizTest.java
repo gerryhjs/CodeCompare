@@ -9,8 +9,8 @@ public class GraphVizTest {
 
 
     public void draw(String list,String name) {
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddhhmmssSSS");
-        name+=sdf.format(new Date());
+//        SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddhhmmssSSS");
+//        name+=sdf.format(new Date());
         GraphViz gViz=new GraphViz(graphVizPath,dotPath);
         gViz.setPicName(name);
         gViz.start_graph();
@@ -30,7 +30,7 @@ edge [shape=plaintext, fontname="Microsoft Yahei"];
         } catch (Exception e) {
             e.printStackTrace();
         }
-//        gViz.delete();
+        gViz.delete();
     }
 
 

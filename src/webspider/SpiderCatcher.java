@@ -18,7 +18,7 @@ public class SpiderCatcher {
      	public String s;
 
 	//public ArrayList<String> list=new ArrayList<String>();
-	   SpiderCatcher(String s){
+	    SpiderCatcher(String s){
     		this.s=s;
     	}
     	public void work(ArrayList<String> keys)

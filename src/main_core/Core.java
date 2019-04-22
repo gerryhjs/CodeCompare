@@ -529,7 +529,7 @@ public abstract  class Core {
 
     private static double compareDiagram(Diagram diagram1, Diagram diagram2)
     {
-        Diagram diagram=clone(diagram1);
+        Diagram diagram=clone(diagram1,diagram2);
         Set<Vertex> vertexList1=clone(diagram1.getVertexList());
         Set<Vertex> vertexList2=clone(diagram2.getVertexList());
         //筛选过滤点
@@ -714,8 +714,8 @@ public abstract  class Core {
         return result;
     }
 
-    private static Diagram clone(Diagram diagram1) {
-        Diagram diagram=new Diagram(diagram1.getName());
+    private static Diagram clone(Diagram diagram1,Diagram diagram2) {
+        Diagram diagram=new Diagram(diagram1.getName()+"-"+diagram2.getName());
         for (Vertex Scanner:diagram1.getVertexList())
             diagram.addVertex(clone(Scanner));
         return  diagram;

@@ -111,12 +111,13 @@ public class Vertex {
 //    }
 
 
-    public boolean needRefactor() {
-        //TODO
-//        if(this.getFrom().size()+this.getTo().size()==0) return  false;
-//        if(bestBelong().equals(this.getPackageName())) return false;
-        return !bestBelong().equals(getPackageName());
-    }
+//    public boolean needRefactor() {
+//        //TODO
+////        if(this.getFrom().size()+this.getTo().size()==0) return  false;
+////        if(bestBelong().equals(this.getPackageName())) return false;
+//        return !bestBelong().equals(getPackageName());
+//    }
+
     public boolean notRelate()
     {
         return this.getFrom().size()+this.getTo().size()==0;

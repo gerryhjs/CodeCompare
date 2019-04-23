@@ -1,6 +1,6 @@
 <xml>
-    <mode>group</mode><!--single/compare/group/train/spider-->
-    <path1>/home/hjs/桌面/材料</path1>
+    <mode>single</mode><!--single/compare/group/train/spider-->
+    <path1>/home/hjs/CodeCompare</path1>
     <path2></path2>
     <!--only for train-->
     <train>[/home/hjs/桌面/CodeCompare,/home/hjs/CodeCompare,true;

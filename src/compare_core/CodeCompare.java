@@ -3,6 +3,8 @@ package compare_core;
 import file_core.CodeFile;
 import main_core.Core;
 
+import static main_core.Core.printLog;
+
 public abstract class CodeCompare {
 //    private  String[] codes1;
 //    private String[] codes2;

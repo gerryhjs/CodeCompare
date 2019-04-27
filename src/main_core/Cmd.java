@@ -503,7 +503,7 @@ public class Cmd {
     {
         return select(true);
     }
-    private static String select(boolean onlyFolder)
+    public static String select(boolean onlyFolder)
     {
         JFileChooser fc = new JFileChooser();
         if (onlyFolder)

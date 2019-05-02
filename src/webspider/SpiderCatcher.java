@@ -14,18 +14,18 @@ import java.util.Date;
 
 import static main_core.Core.printLog;
 
-public class SpiderCatcher {  
-     	public String s;
+public class SpiderCatcher {
+	public String s;
 
 	//public ArrayList<String> list=new ArrayList<String>();
-	    SpiderCatcher(String s){
-    		this.s=s;
-    	}
-    	public void work(ArrayList<String> keys)
-    	{
-    		boolean find =false;
+	SpiderCatcher(String s){
+		this.s=s;
+	}
+	public void work(ArrayList<String> keys)
+	{
+		boolean find =false;
 		StringBuilder html=new StringBuilder();
-			if (keys.size()==0) find=true;
+		if (keys.size()==0) find=true;
 		try {
 			URL url;
 			url = new URL(s);
@@ -70,13 +70,13 @@ public class SpiderCatcher {
 			// TODO Auto-generated catch block
 			printLog("[Catcher Error]==:"+ e.toString());
 		}
-		}
+	}
 
 	private String deal(String html) {
 //    		StringBuilder code=new StringBuilder();
-    		html=html.replaceAll("<[^>]*>","");
-			html=removeTab(html);
-    		return html;
+		html=html.replaceAll("<[^>]*>","");
+		html=removeTab(html);
+		return html;
 	}
 
 	private String removeTab(String s)
@@ -91,42 +91,42 @@ public class SpiderCatcher {
 //    		return true;
 //    	}
 
-		public String select(String pattern,String key)
+	public String select(String pattern,String key)
+	{
+		try
 		{
-			try
-			{
 			String txt=pattern.substring(pattern.indexOf(key)-5, pattern.indexOf(key)+5+key.length());
 			txt=txt.replaceAll(key, "["+key+"]");
 			txt="..."+txt+"...";
 			return txt;
-			}
-			catch(Exception e)
+		}
+		catch(Exception e)
+		{
+			try
 			{
-				try
-				{
 				String txt=pattern.substring(pattern.indexOf(key), pattern.indexOf(key)+8+key.length());
 				txt=txt.replaceAll(key, "["+key+"]");
 				txt=txt+"...";
 				return txt;
-				}
-				catch(Exception e2)
+			}
+			catch(Exception e2)
+			{
+				try
 				{
-					try
-					{
 					String txt=pattern.substring(pattern.indexOf(key)-8, pattern.indexOf(key)+key.length());
 					txt=txt.replaceAll(key, "["+key+"]");
 					txt="..."+txt;
 					return txt;
-					}
-					catch(Exception e3)
-					{
-						String txt=pattern;
-						txt=txt.replaceAll(key, "["+key+"]");
-						return txt;
-					}
+				}
+				catch(Exception e3)
+				{
+					String txt=pattern;
+					txt=txt.replaceAll(key, "["+key+"]");
+					return txt;
 				}
 			}
-
 		}
 
-}  
+	}
+
+}

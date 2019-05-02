@@ -28,7 +28,7 @@ public class CodeFile {
     private void setPackageName(String packageName)
     {
         if(packageName!=null)
-        this.packageName=packageName;
+            this.packageName=packageName;
         else
             this.packageName="null";
     }

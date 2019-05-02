@@ -448,7 +448,7 @@ public class Cmd {
     static boolean load(String path) {
         if (!new File(path).exists())
         {
-            printWarn("Cannot file xml! Use default instead::"+path);
+            printWarn("Cannot file xml@"+path);
             FileStreamer.output(settingPath,"<xml></xml>",false);
             return false;
         }

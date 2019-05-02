@@ -17,6 +17,8 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static main_core.Cmd.select;
+
 /**
  * Created by Saika on 2019/1/12.
  */
@@ -81,14 +83,24 @@ public abstract  class Core {
 
     public static void AutoRun()
     {
+        printLog("Start AutoRun.");
         Cmd.load();
-        switch (mode)
+        switch (mode.toLowerCase())
         {
             case "single":{
+                if (path1.length()==0)
+                    path1=select(true);
+                if (path1==null) return;
                 check(path1);
                 break;
             }
             case "compare":{
+                if (path1.length()==0)
+                    path1=select(true);
+                if (path2.length()==0)
+                    path2=select(true);
+                if (path1==null) return;
+                if  (path2==null) return;
                 if ((new File(path1).exists())&&(new File(path2).exists())) {
                     if ((new File(path1).isFile())&&(new File(path2).isFile()))
                             printSys(compare_file(path1, path2));
@@ -98,6 +110,9 @@ public abstract  class Core {
                 break;
             }
             case "group":{
+                if (path1.length()==0)
+                    path1=select(true);
+                if (path1==null) return;
                 compare_inGroup(path1);
                 break;
             }
@@ -347,8 +362,6 @@ public abstract  class Core {
 
     public static double compare(String path0, String path1)//1-1
     {
-//        boolean tmp=createDiagram;
-//        createDiagram=false;
         int projectSize = 2;
         String[] paths = new String[projectSize];
         paths[0] = path0;
@@ -364,7 +377,6 @@ public abstract  class Core {
             if (projects[i].getVertexList().size()==0)
                 printWarn("Project '"+paths[i]+"' is empty size code.");
         }
-//        createDiagram=tmp;
         return compareDiagram(projects[0],projects[1]);
     }
     public static double compare_toGroup(String path1,String path2)//1-N

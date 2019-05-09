@@ -101,12 +101,12 @@ class  GraphViz{
            // OutputStreamWriter op = new OutputStreamWriter(newFileOutputStream(file), "utf-8");
             fos.write(dotcode.getBytes());
             fos.close();
-            try {
-                Desktop.getDesktop().open(new File(runPath + File.separator + resultGif + ".png"));
-            }catch (Exception ignored)
-            {
-
-            }
+//            try {
+//                Desktop.getDesktop().open(new File(runPath + File.separator + resultGif + ".png"));
+//            }catch (Exception ignored)
+//            {
+//
+//            }
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
